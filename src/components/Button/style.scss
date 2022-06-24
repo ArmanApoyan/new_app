@@ -1,0 +1,16 @@
+.add {
+  background-color: #9595ab;
+  height: 30px;
+  transform: scale(1.1);
+  width: 30px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 8px;
+  &:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+}

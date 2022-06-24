@@ -1,0 +1,28 @@
+.search {
+  background-color: #9595ab;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  height: 30px;
+  font-size: 18px;
+  box-sizing: border-box;
+  &::placeholder {
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+  }
+  &:hover {
+    background-color: gray;
+  }
+  &:focus-visible {
+    border: 2px solid white;
+    outline: none;
+    background-color: gray;
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+.searchForm {
+  width: 150px;
+}

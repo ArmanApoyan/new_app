@@ -1,0 +1,98 @@
+.newTask {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 15px;
+  margin: 10px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  input,
+  select,
+  textarea {
+    height: 30px;
+    font-size: 18px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+  }
+  textarea {
+    height: 150px;
+    resize: none;
+    &:focus {
+      font-size: 16px;
+    }
+  }
+  button {
+    background-color: rgb(51, 141, 129);
+    color: white;
+    font-weight: bold;
+    width: 120px;
+    height: 30px;
+    margin: 10px auto;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    font-size: 18px;
+    &:hover {
+      cursor: pointer;
+      border: 2px solid darkgreen;
+    }
+  }
+}
+.redborder {
+  border: 2px solid red;
+}
+.error {
+  color: red;
+  height: 0px;
+  
+}
+.view {
+  margin: 15px;
+  p {
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: default;
+    &:hover {
+      color: darkblue;
+    }
+  }
+  .status {
+    border: none;
+    font-weight: bold;
+    cursor: default;
+    &:hover {
+      border: none;
+      color: black;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .newTask {
+    select,
+    input,
+    textarea {
+      font-size: 15px;
+    }
+  }
+  .view {
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .newTask {
+    select,
+    input,
+    textarea {
+      font-size: 13px;
+    }
+  }
+  .view {
+    p {
+      font-size: 20px;
+    }
+  }
+}

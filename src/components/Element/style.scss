@@ -1,0 +1,48 @@
+.goal {
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  width: 80%;
+  position: relative;
+  box-shadow: 5px 8px 10px gray;
+  user-select: none;
+  .x {
+    background-color: darkred;
+    border: 1px solid black;
+    border-radius: 18px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 9px;
+    font-weight: bold;
+    height: 24px;
+    transform: scale(1.4);
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+  }
+  .edit {
+    position: absolute;
+    top: 0;
+    right: 45px;
+    margin: 2px;
+    background-color: transparent;
+    border: none;
+    background-color: rgb(119, 162, 241);
+    border-radius: 20px;
+    padding: 8px;
+    width: 40px;
+    height: 38px;
+    transform: scale(0.9);
+    border: 1px solid black;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+  }
+}
