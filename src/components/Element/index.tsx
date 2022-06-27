@@ -11,6 +11,7 @@ import { useState } from "react";
 import Modal from "../Modal";
 import NewTask from "../NewTask";
 
+
 interface PropTypes {
   task: Goal;
   index: number;
@@ -27,6 +28,13 @@ const Element: React.FC<PropTypes> = (props) => {
     ids.push(el.id);
   });
   let key = random(ids);
+  let des: string;
+  if (task.description.length > 40) {
+    des = task.description.substring(0, 45) + "...";
+  } else {
+    des = task.description;
+  }
+
   return (
     <>
       <Draggable draggableId={task.id + ""} index={index} key={key}>
@@ -42,7 +50,7 @@ const Element: React.FC<PropTypes> = (props) => {
             {...provided.dragHandleProps}
           >
             <h1>{task.title}</h1>
-            <h3>{task.description}</h3>
+            <h3>{des}</h3>
             <button
               className="x"
               onClick={() => {

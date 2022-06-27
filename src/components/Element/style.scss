@@ -1,12 +1,26 @@
 .goal {
-  background-color: white;
+  min-height: 120px;
+  scroll-behavior: auto;
+  background-color: rgb(214, 210, 210);
   padding: 10px;
-  text-align: center;
+  text-align: left;
   border-radius: 5px;
   width: 80%;
   position: relative;
   box-shadow: 5px 8px 10px gray;
   user-select: none;
+  overflow: hidden;
+  h3 {
+    height: 40px;
+  }
+  h1 {
+    height: 40px;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
   .x {
     background-color: darkred;
     border: 1px solid black;

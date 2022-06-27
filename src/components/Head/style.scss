@@ -1,6 +1,6 @@
 nav {
   width: 100%;
-  background-color: rgba(161, 161, 161, 0.555);
+  background-color: rgba(108, 162, 172, 0.493);
   .head {
     width: 70%;
     padding: 10px 30px;
@@ -11,5 +11,11 @@ nav {
   }
   .search {
     margin-right: 10px;
+  }
+  .buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
   }
 }

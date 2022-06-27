@@ -22,7 +22,7 @@
       font-size: 16px;
     }
   }
-  button {
+  .submit {
     background-color: rgb(51, 141, 129);
     color: white;
     font-weight: bold;
@@ -38,34 +38,59 @@
     }
   }
 }
+.back {
+  position: absolute;
+  right: 45px;
+  top: 0;
+  margin: 5px;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(212, 201, 39);
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  font-size: 18px;
+  &:hover {
+    border: 2px solid rgb(129, 121, 8);
+    cursor: pointer;
+  }
+}
 .redborder {
-  border: 2px solid red;
+  border: 2px solid red !important;
 }
 .error {
   color: red;
   height: 0px;
-  
 }
 .view {
   margin: 15px;
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
   p {
     font-size: 25px;
     padding: 5px;
-    border-radius: 10px;
     cursor: default;
     &:hover {
       color: darkblue;
     }
   }
   .status {
-    border: none;
     font-weight: bold;
-    cursor: default;
-    &:hover {
-      border: none;
-      color: black;
-    }
   }
+}
+.des {
+  overflow-y: auto;
+  height: 150px;
+}
+.view_status {
+  font-size: 25px;
+  font-weight: bold;
+}
+.view_title {
+  font-size: 25px;
+}
+.view_description {
+  font-size: 25px;
 }
 
 @media (max-width: 600px) {
@@ -80,6 +105,15 @@
     p {
       font-size: 22px;
     }
+  }
+  .view_status {
+    font-size: 20px;
+  }
+  .view_title {
+    font-size: 20px;
+  }
+  .view_description {
+    font-size: 20px;
   }
 }
 @media (max-width: 400px) {

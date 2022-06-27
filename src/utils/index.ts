@@ -6,3 +6,7 @@ export function random(numbers: Array<number>) {
     random(numbers);
   }
 }
+
+export function validator (regex:RegExp,data:any) {
+  return regex.test(data)
+}

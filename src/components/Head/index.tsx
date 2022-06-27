@@ -6,7 +6,6 @@ import Search from "../Search";
 import "./style.scss";
 import { AiFillFileAdd } from "react-icons/ai";
 
-
 const Head: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -15,14 +14,14 @@ const Head: React.FC = () => {
         <div className="search">
           <Search />
         </div>
-        <div className="add">
+        <div className="buttons">
           <Button
             className="add"
             onClick={() => {
               setIsOpen(true);
             }}
           >
-            <AiFillFileAdd/>
+            <AiFillFileAdd />
           </Button>
         </div>
       </div>

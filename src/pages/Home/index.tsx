@@ -11,8 +11,8 @@ const ToDo: React.FC = () => {
   const dispatch = useDispatch();
   let goals = useSelector((state: State) => state.task.goals);
   const search = useSelector((state: State) => state.task.search);
-  if(search.length>0){
-  goals = goals.filter(el=>el.title == search)
+  if(search.length>2){
+    goals = goals.filter(el=>el.title.toLowerCase().includes(search.toLowerCase()))
   }
   let ids: number[] = [];
   goals.map((el: Goal) => {

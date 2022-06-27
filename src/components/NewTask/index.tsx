@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import React, { useEffect, useState, useMemo, useCallback, memo } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { action1 } from "../../store/Task/action";
-import { ADD_TASK } from "../../store/Task/types";
 import { Column, Goal, State } from "../../types/global";
-import { random } from "../../utils";
+import { random, validator } from "../../utils";
+import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
+
 
 interface Props {
   close: CallableFunction;
@@ -16,6 +16,7 @@ interface Props {
 
 const NewTask: React.FC<Props> = (props) => {
   const { close, type, task } = props;
+  const [changeType, setChangeType] = useState("");
   const [compType, setcompType] = useState(type);
   const { columns, goals } = useSelector((state: State) => state.task);
   const newIds = useMemo(() => {
@@ -42,41 +43,64 @@ const NewTask: React.FC<Props> = (props) => {
     }
   }, [task]);
   const dispatch = useDispatch();
+  const handleBlur = (
+    e: any,
+    field: { value: string; error: boolean },
+    value: string
+  ) => {
+    if (e.target.value == value) {
+      e.target.classList.add("redborder");
+      field.error = true;
+      setFormData({ ...formData });
+    }
+    if (e.target.value != value) {
+      e.target.classList.remove("redborder");
+      field.error = false;
+      setFormData({ ...formData });
+    }
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (formData.status.value == "default" || formData.status.value == "") {
+      setFormData({ ...formData });
+      formData.status.error = true;
+      return;
+    }
+    if (formData.title.value == "") {
+      formData.title.error = true;
+      setFormData({ ...formData });
+      return;
+    }
+    if (formData.title.error == true) {
+      return;
+    }
+    let data = {
+      id: formData.id,
+      title: formData.title.value,
+      description: formData.description.value,
+      status: formData.status.value,
+    };
+    // @ts-ignore
+    dispatch(action1(compType, data));
+    close?.();
+  };
   return (
     <>
       {compType != "view" && (
         <form
           className="newTask"
           onSubmit={(e) => {
-            e.preventDefault();
-            if (
-              formData.status.value == "default" ||
-              formData.status.value == ""
-            ) {
-              setFormData({ ...formData });
-              formData.status.error = true;
-              return;
-            }
-            if (formData.title.value == "") {
-              formData.title.error = true;
-              setFormData({ ...formData });
-              return;
-            }
-            let data = {
-              id: formData.id,
-              title: formData.title.value,
-              description: formData.description.value,
-              status: formData.status.value,
-            };
-            // dispatch({ data: { ...data, id: random(newIds) }, type: ADD_TASK });
-            // @ts-ignore
-            dispatch(action1(compType, data));
-            close?.();
+            handleSubmit(e);
           }}
         >
-          {formData.status.error == true && <p className="error">Select Column</p>}
+          {formData.status.error == true && (
+            <p className="error">Select Column</p>
+          )}
           {compType == "add" && (
             <select
+              onBlur={(e) => {
+                handleBlur(e, formData.status, "default");
+              }}
               defaultValue={"default"}
               onChange={(e) => {
                 setFormData({
@@ -97,48 +121,205 @@ const NewTask: React.FC<Props> = (props) => {
               })}
             </select>
           )}
-          {compType == "create" && <p>{formData.status.value}</p>}
-          {formData.title.error == true && <p className="error">Title is required</p>}
-          <input
-            // className={formData.title.error == true?"redborder":""}
-            type="text"
-            placeholder="Title"
-            value={formData.title.value}
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                title: { value: e.target.value, error: false },
-              });
-            }}
-          />
-          
-          <textarea
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                description: { value: e.target.value, error: false },
-              });
-            }}
-            value={formData.description.value}
-            placeholder="Description"
-          />
-          {compType == "add" && <button type="submit">ADD</button>}
-          {compType == "create" && <button type="submit">Save</button>}
+          {compType == "create" && changeType == "" && (
+            <select
+              defaultValue={formData.status.value}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  status: { value: e.target.value, error: false },
+                });
+              }}
+            >
+              {columns.map((el: Column, i: number) => {
+                return (
+                  <option value={el.title} key={i}>
+                    {el.title}
+                  </option>
+                );
+              })}
+            </select>
+          )}
+          {changeType == "select" && (
+            <>
+              <select
+                defaultValue={formData.status.value}
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    status: { value: e.target.value, error: false },
+                  });
+                }}
+              >
+                {columns.map((el: Column, i: number) => {
+                  return (
+                    <option value={el.title} key={i}>
+                      {el.title}
+                    </option>
+                  );
+                })}
+              </select>
+              <p
+                onDoubleClick={() => {
+                  setChangeType("input");
+                }}
+                className="view_title"
+              >
+                {formData.title.value}
+              </p>
+              <p
+                onDoubleClick={() => {
+                  setChangeType("textarea");
+                }}
+                className="view_description des"
+              >
+                {formData.description.value}
+              </p>
+            </>
+          )}
+          {formData.title.error == true && (
+            <p className="error">Title is incorrect</p>
+          )}
+          {changeType == "" && (
+            <input
+              onBlur={(e) => {
+                handleBlur(e, formData.title, "");
+                if (!validator(/^\D[a-zA-Z0-9,.!? ]{2,}/, e.target.value)) {
+                  formData.title.error = true;
+                  setFormData({ ...formData });
+                }
+              }}
+              type="text"
+              placeholder="Title"
+              value={formData.title.value}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  title: { value: e.target.value, error: false },
+                });
+              }}
+            />
+          )}
+          {changeType == "input" && (
+            <>
+              <p
+                onDoubleClick={() => {
+                  setChangeType("select");
+                }}
+                className="view_status"
+              >
+                {formData.status.value}
+              </p>
+              <input
+                type="text"
+                placeholder="Title"
+                value={formData.title.value}
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    title: { value: e.target.value, error: false },
+                  });
+                }}
+              />
+              <p 
+                onDoubleClick={() => {
+                  setChangeType("textarea");
+                }}
+                className="view_description des"
+              >
+                {formData.description.value}
+              </p>
+            </>
+          )}
+
+          {changeType == "" && (
+            <textarea
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  description: { value: e.target.value, error: false },
+                });
+              }}
+              value={formData.description.value}
+              placeholder="Description"
+            />
+          )}
+          {changeType == "textarea" && (
+            <>
+              <p
+                onDoubleClick={() => {
+                  setChangeType("select");
+                }}
+                className="view_status"
+              >
+                {formData.status.value}
+              </p>
+              <p
+                onDoubleClick={() => {
+                  setChangeType("input");
+                }}
+                className="view_title"
+              >
+                {formData.title.value}
+              </p>
+              <textarea
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    description: { value: e.target.value, error: false },
+                  });
+                }}
+                value={formData.description.value}
+                placeholder="Description"
+              />
+            </>
+          )}
+          {compType == "add" && (
+            <button className="submit" type="submit">
+              ADD
+            </button>
+          )}
+          {compType == "create" && (
+            <button className="submit" type="submit">
+              Save
+            </button>
+          )}
+          {compType == "create" && changeType != "" && (
+            <button
+              className="back"
+              onClick={() => {
+                setcompType("view");
+              }}
+            >
+              <BiArrowBack />
+            </button>
+          )}
         </form>
       )}
       {compType == "view" && (
         <div className="view">
-          <p className="status">{formData.status.value}</p>
           <p
-            onClick={() => {
+            className="status"
+            onDoubleClick={() => {
               setcompType("create");
+              setChangeType("select");
+            }}
+          >
+            {formData.status.value}
+          </p>
+          <p
+            onDoubleClick={() => {
+              setcompType("create");
+              setChangeType("input");
             }}
           >
             {formData.title.value}
           </p>
           <p
-            onClick={() => {
+            className="des"
+            onDoubleClick={() => {
               setcompType("create");
+              setChangeType("textarea");
             }}
           >
             {formData.description.value}
@@ -149,4 +330,9 @@ const NewTask: React.FC<Props> = (props) => {
   );
 };
 
-export default NewTask;
+export default memo(NewTask, (prevProps, nextProps) => {
+  if (prevProps == nextProps) {
+    return false;
+  }
+  return true;
+});
