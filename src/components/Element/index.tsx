@@ -25,7 +25,7 @@ const Element: React.FC<PropTypes> = (props) => {
   const { task, index } = props;
   let ids = useMemo(getIds(goals), [goals]);
   let key = random(ids);
-  let des: string = lengthCheck(task.description, 18);
+  let des: string = lengthCheck(task.description, 30);
   let title: string = lengthCheck(task.title, 10);
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {

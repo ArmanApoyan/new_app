@@ -308,6 +308,7 @@ const NewTask: React.FC<Props> = (props) => {
       )}
       {compType == "view" && (
         <div className="view">
+            <p>{task?.id}</p>
           <p
             className="status"
             onDoubleClick={() => {
