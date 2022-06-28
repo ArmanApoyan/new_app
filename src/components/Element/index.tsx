@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { DELETE } from "../../store/Task/types";
 import { Goal, State } from "../../types/global";
-import { random } from "../../utils";
+import { getIds, lengthCheck, random } from "../../utils";
 import "./style.scss";
 import { BsFillPencilFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Modal from "../Modal";
 import NewTask from "../NewTask";
-
+import { useSearchParams } from "react-router-dom";
 
 interface PropTypes {
   task: Goal;
@@ -22,34 +22,34 @@ const Element: React.FC<PropTypes> = (props) => {
   const [type, setType] = useState("");
   const dispatch = useDispatch();
   const goals = useSelector((state: State) => state.task.goals);
-  let ids: number[] = [];
   const { task, index } = props;
-  goals.map((el: Goal) => {
-    ids.push(el.id);
-  });
+  let ids = useMemo(getIds(goals), [goals]);
   let key = random(ids);
-  let des: string;
-  if (task.description.length > 40) {
-    des = task.description.substring(0, 45) + "...";
-  } else {
-    des = task.description;
-  }
-
+  let des: string = lengthCheck(task.description, 18);
+  let title: string = lengthCheck(task.title, 10);
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("task") === task.id.toString()) {
+      setIsOpen(true);
+      setType("view");
+    }
+  }, [searchParams]);
   return (
     <>
-      <Draggable draggableId={task.id + ""} index={index} key={key}>
+      <Draggable draggableId={task.id.toString()} index={index} key={key}>
         {(provided, snaspshot) => (
           <div
             className="goal"
             onDoubleClick={(e) => {
               setIsOpen(true);
               setType("view");
+              setSearchParams(`task=${task.id}`);
             }}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <h1>{task.title}</h1>
+            <h1>{title}</h1>
             <h3>{des}</h3>
             <button
               className="x"
@@ -75,6 +75,7 @@ const Element: React.FC<PropTypes> = (props) => {
         isOpen={isOpen}
         close={() => {
           setIsOpen(false);
+          setSearchParams("");
         }}
       >
         <NewTask

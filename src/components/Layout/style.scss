@@ -5,12 +5,12 @@
   justify-content: left;
   padding: 20px;
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 600px) {
   .main {
     flex-wrap: wrap;
-    justify-content: center;
   }
 }
 

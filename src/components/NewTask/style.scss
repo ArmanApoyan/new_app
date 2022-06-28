@@ -81,16 +81,34 @@
 .des {
   overflow-y: auto;
   height: 150px;
+  white-space:break-spaces;
+}
+.title {
+  overflow-y: auto;
+  min-height: 30px;
+  max-height: 150px;
 }
 .view_status {
   font-size: 25px;
   font-weight: bold;
+  &:hover {
+    color: darkblue;
+    cursor: default;
+  }
 }
 .view_title {
   font-size: 25px;
+  &:hover {
+    color: darkblue;
+    cursor: default;
+  }
 }
 .view_description {
   font-size: 25px;
+  &:hover {
+    color: darkblue;
+    cursor: default;
+  }
 }
 
 @media (max-width: 600px) {

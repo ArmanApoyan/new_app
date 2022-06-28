@@ -7,11 +7,13 @@
   border-radius: 5px;
   width: 80%;
   position: relative;
-  box-shadow: 5px 8px 10px gray;
+  // box-shadow: 5px 8px 10px gray;
   user-select: none;
   overflow: hidden;
   h3 {
     height: 40px;
+    white-space:break-spaces;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
   }
   h1 {
     height: 40px;
@@ -29,7 +31,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin: 9px;
+    margin: 11.5px;
     font-weight: bold;
     height: 24px;
     transform: scale(1.4);
@@ -43,7 +45,7 @@
     position: absolute;
     top: 0;
     right: 45px;
-    margin: 2px;
+    margin: 5px;
     background-color: transparent;
     border: none;
     background-color: rgb(119, 162, 241);

@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { action1 } from "../../store/Task/action";
 import { Column, Goal, State } from "../../types/global";
-import { random, validator } from "../../utils";
+import { getIds, random, validator } from "../../utils";
 import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
-
+import { useSearchParams } from "react-router-dom";
 
 interface Props {
   close: CallableFunction;
@@ -19,13 +19,7 @@ const NewTask: React.FC<Props> = (props) => {
   const [changeType, setChangeType] = useState("");
   const [compType, setcompType] = useState(type);
   const { columns, goals } = useSelector((state: State) => state.task);
-  const newIds = useMemo(() => {
-    let ids: number[] = [];
-    goals.map((el: Goal) => {
-      ids.push(el.id);
-    });
-    return ids;
-  }, [goals]);
+  const newIds = useMemo(getIds(goals), [goals]);
   const [formData, setFormData] = useState({
     id: random(newIds),
     title: { value: "", error: false },
@@ -84,6 +78,7 @@ const NewTask: React.FC<Props> = (props) => {
     dispatch(action1(compType, data));
     close?.();
   };
+
   return (
     <>
       {compType != "view" && (
@@ -132,6 +127,13 @@ const NewTask: React.FC<Props> = (props) => {
               }}
             >
               {columns.map((el: Column, i: number) => {
+                if (el.title == formData.status.value) {
+                  return (
+                    <option selected value={el.title} key={i}>
+                      {el.title}
+                    </option>
+                  );
+                }
                 return (
                   <option value={el.title} key={i}>
                     {el.title}
@@ -163,7 +165,7 @@ const NewTask: React.FC<Props> = (props) => {
                 onDoubleClick={() => {
                   setChangeType("input");
                 }}
-                className="view_title"
+                className="view_title title"
               >
                 {formData.title.value}
               </p>
@@ -221,7 +223,7 @@ const NewTask: React.FC<Props> = (props) => {
                   });
                 }}
               />
-              <p 
+              <p
                 onDoubleClick={() => {
                   setChangeType("textarea");
                 }}
@@ -258,7 +260,7 @@ const NewTask: React.FC<Props> = (props) => {
                 onDoubleClick={() => {
                   setChangeType("input");
                 }}
-                className="view_title"
+                className="view_title title"
               >
                 {formData.title.value}
               </p>
@@ -289,6 +291,14 @@ const NewTask: React.FC<Props> = (props) => {
               className="back"
               onClick={() => {
                 setcompType("view");
+                if (task) {
+                  setFormData({
+                    id: task.id,
+                    title: { value: task.title, error: false },
+                    description: { value: task.description, error: false },
+                    status: { value: task.status, error: false },
+                  });
+                }
               }}
             >
               <BiArrowBack />
@@ -308,6 +318,7 @@ const NewTask: React.FC<Props> = (props) => {
             {formData.status.value}
           </p>
           <p
+            className="title"
             onDoubleClick={() => {
               setcompType("create");
               setChangeType("input");
