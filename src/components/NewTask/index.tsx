@@ -1,8 +1,8 @@
+import { getIds, handleBlur, handleChange, handleDblClick, random, validator } from "../../utils";
 import React, { useEffect, useState, useMemo, memo } from "react";
+import { Column, Goal, State } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
 import { action1 } from "../../store/Task/action";
-import { Column, Goal, State } from "../../types/global";
-import { getIds, handleBlur, handleChange, handleDblClick, random, validator } from "../../utils";
 import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
 
