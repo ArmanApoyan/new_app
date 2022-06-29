@@ -19,7 +19,7 @@ export const reorder = (
 ): Goal[] => {
   const result = Array.from(tasks);
   const [replaced] = result.splice(start, 1);
-  result.splice(end, 0, {...replaced, status: endCol});
+  result.splice(end-1, 0, {...replaced, status: endCol});
   return result;
 };
 
