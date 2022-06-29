@@ -4,12 +4,26 @@ export function random(numbers: Array<number>) {
   let n: number = Math.round(Math.random() * 10000);
   if (!numbers.includes(n)) {
     return n;
-  } else {
+  } 
+  else {
     random(numbers);
   }
 }
 
-export function validator (regex:RegExp,data:any) {
+export const reorder = (
+  tasks: Goal[],
+  start: number,
+  end: number,
+  startCol: string,
+  endCol: string,
+): Goal[] => {
+  const result = Array.from(tasks);
+  const [replaced] = result.splice(start, 1);
+  result.splice(end, 0, {...replaced, status: endCol});
+  return result;
+};
+
+export function validator (regex:RegExp, data:any) {
   return regex.test(data)
 }
 
@@ -23,10 +37,12 @@ export function getIds (goals:Array<Goal>) {
   }
 }
 
-export function lengthCheck (string:string,count:number) {
+export function lengthCheck (string:string, count:number) {
   if (string.length > count) {
     return string.substring(0, count) + "...";
-  } else {
+  } 
+  
+  else {
     return string;
   }
 }

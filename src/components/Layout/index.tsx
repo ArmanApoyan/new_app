@@ -5,7 +5,7 @@ import { State } from "../../types/global";
 import Head from "../Head";
 import "./style.scss";
 
-const Layout: React.FC = () => {
+const Layout: React.FC<{ children?: any }> = (props) => {
   return (
     <>
       <Head />

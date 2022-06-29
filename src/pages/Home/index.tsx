@@ -1,17 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import Element from "../../components/Element";
 import { UPDATE } from "../../store/Task/types";
 import { Column, Goal, State } from "../../types/global";
-import { random, getIds } from "../../utils";
+import { reorder } from "../../utils";
 import "./style.scss";
 
-const ToDo: React.FC<{ onclick?: CallableFunction }> = (props) => {
+const ToDo: React.FC = () => {
   const dispatch = useDispatch();
-  const { goals } = useSelector((state: State) => state.task);
-  const { search } = useSelector((state: State) => state.task);
-  const [tasks, setTasks] = useState([...goals]);
+  const { goals, search, columns } = useSelector((state: State) => state.task);
+
+  const [tasks, setTasks] = useState(structuredClone(goals));
+
+  useEffect(() => {
+    setTasks(goals)
+  }, [goals])
+
   useEffect(() => {
     search.length > 2
       ? setTasks([
@@ -20,29 +25,11 @@ const ToDo: React.FC<{ onclick?: CallableFunction }> = (props) => {
           ),
         ])
       : setTasks([...goals]);
-  }, [goals, search]);
-  const ids = useMemo(getIds(goals), [goals]);
-  const columns = useSelector((state: State) => state.task.columns);
-  const reorder = (
-    tasks: Goal[],
-    start: number,
-    end: number,
-    startCol: string,
-    endCol: string
-  ): Goal[] => {
-    const result = Array.from(tasks);
-    result.map((el, i) => {
-      if (i == start && el.status == startCol) {
-        el.status = endCol;
-      }
-    });
-    const [replaced] = result.splice(start, 1);
-    result.splice(end, 0, replaced);
-    return result;
-  };
+  }, [search]);
+
   function dragEnd(res: any) {
-    let data = reorder(
-      goals,
+    let data: Goal[] = reorder(
+      tasks,
       res.source.index,
       res.destination.index,
       res.source.droppableId,
@@ -50,23 +37,32 @@ const ToDo: React.FC<{ onclick?: CallableFunction }> = (props) => {
     );
     dispatch({ data, type: UPDATE });
   }
+  const handleSearch = useCallback((search: string) => {
+    return (elem: Goal) => {
+      if(search.length < 2) {
+        return elem
+      }
+      else if(elem.title.toLowerCase().includes(search.toLowerCase())) {
+        return elem
+      }
+      return false
+    }
+  }, [])
   return (
     <DragDropContext onDragEnd={dragEnd}>
       {columns.map((elm: Column, index: number) => {
-        let key = random(ids);
         return (
-          <Droppable droppableId={elm.title} key={key}>
-            {(provided, snapshot) => (
+          <Droppable droppableId={elm.title} key={index}>
+            {(provided) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className="toDo"
+                className="columns"
               >
                 <h2>{elm.title}</h2>
-                {tasks.map((el: Goal, i: number) => {
+                {goals.filter(handleSearch(search)).map((el: Goal, i: number) => {
                   if (el.status == elm.title) {
-                    let key = random(ids);
-                    return <Element key={key} task={el} index={i} />;
+                    return <Element key={`${el.id}/${elm.title}`} task={el} index={i} />;
                   }
                 })}
                 {provided.placeholder}

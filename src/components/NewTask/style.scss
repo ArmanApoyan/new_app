@@ -61,6 +61,16 @@
   color: red;
   height: 0px;
 }
+.id {
+  font-size: 14px !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 5px;
+  &:hover {
+    color: black !important;
+  }
+}
 .view {
   margin: 15px;
   text-align: left;

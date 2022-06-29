@@ -20,14 +20,15 @@ export const myReducer = (state: state = myState, action: action) => {
       state.goals = [...state.goals, action.data];
       break;
     case UPDATE:
-      state.goals = [...action.data];
+      state.goals = action.data;
       break;
     case DELETE:
       state.goals = state.goals.filter((el) => el.id != action.id);
       break;
     case CHANGE:
-      state.goals = state.goals.filter((el) => el.id != action.data.id);
-      state.goals = [...state.goals, action.data];
+    let index = 0
+    state.goals.forEach((el,i)=>el.id==action.data.id?index=i:false)
+    state.goals.splice(index,1,action.data)
       break;
     case SEARCH:
       state.search = action.search

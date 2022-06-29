@@ -31,7 +31,7 @@ export function changeTask(data: Goal) {
   };
 }
 
-const editAction = (data: any) => {
+const addAction = (data: any) => {
   return { type: ADD_TASK, data };
 };
 
@@ -43,7 +43,8 @@ export const action1 = (type: string, task: any) => {
   return (dispatch: Dispatch<AnyAction>) => {
     if (type == "create") {
       dispatch(creatAction(task));
-    } else dispatch(editAction(task));
+    } 
+    else dispatch(addAction(task));
   };
 };
 

@@ -7,7 +7,6 @@
   border-radius: 5px;
   width: 80%;
   position: relative;
-  // box-shadow: 5px 8px 10px gray;
   user-select: none;
   overflow: hidden;
   h3 {
@@ -60,5 +59,11 @@
       background-color: rgb(255, 255, 255);
       color: black;
     }
+  }
+}
+
+@media (max-width:600px){
+  h1 {
+    font-size: 22px;
   }
 }
