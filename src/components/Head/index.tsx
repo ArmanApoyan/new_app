@@ -1,13 +1,14 @@
+import { AiFillFileAdd } from "react-icons/ai";
 import { useState } from "react";
-import Button from "../Button";
-import Modal from "../Modal";
 import NewTask from "../NewTask";
 import Search from "../Search";
+import Button from "../Button";
+import Modal from "../Modal";
 import "./style.scss";
-import { AiFillFileAdd } from "react-icons/ai";
 
 const Head: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav>
       <div className="head">

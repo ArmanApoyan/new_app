@@ -1,6 +1,5 @@
 import "./style.scss";
 import ReactDOM from "react-dom";
-import NewTask from "../NewTask";
 import React, { useRef } from "react";
 import useOutsideClick from "../../hooks";
 

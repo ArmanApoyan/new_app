@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { useDispatch, useSelector } from "react-redux";
-import Element from "../../components/Element";
-import { UPDATE } from "../../store/Task/types";
 import { Column, Goal, State } from "../../types/global";
+import { useDispatch, useSelector } from "react-redux";
+import { UPDATE } from "../../store/Task/types";
+import Element from "../../components/Element";
 import { reorder } from "../../utils";
+import { useCallback } from "react";
 import "./style.scss";
 
 const ToDo: React.FC = () => {
@@ -21,6 +21,7 @@ const ToDo: React.FC = () => {
     );
     dispatch({ data, type: UPDATE });
   }
+  
   const handleSearch = useCallback((search: string) => {
     return (elem: Goal) => {
       if(search.length < 2) {
@@ -32,6 +33,7 @@ const ToDo: React.FC = () => {
       return false
     }
   }, [])
+  
   return (
     <DragDropContext onDragEnd={dragEnd}>
       {columns.map((elm: Column, index: number) => {

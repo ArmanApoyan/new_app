@@ -9,6 +9,7 @@ interface PropTypes {
 
 const Button: React.FC<PropTypes> = (props) => {
   const { children, onClick, className } = props;
+  
   return (
     <button className={className} onClick={onClick}>
       {children}

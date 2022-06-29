@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useMemo, useCallback, memo } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useMemo, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { action1 } from "../../store/Task/action";
 import { Column, Goal, State } from "../../types/global";
 import { getIds, random, validator } from "../../utils";
 import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
-import { useSearchParams } from "react-router-dom";
 
 interface Props {
   close: CallableFunction;
@@ -16,16 +14,22 @@ interface Props {
 
 const NewTask: React.FC<Props> = (props) => {
   const { close, type, task } = props;
+  const dispatch = useDispatch();
+
   const [changeType, setChangeType] = useState("");
   const [compType, setcompType] = useState(type);
+
   const { columns, goals } = useSelector((state: State) => state.task);
+
   const newIds = useMemo(getIds(goals), [goals]);
+
   const [formData, setFormData] = useState({
     id: random(newIds),
     title: { value: "", error: false },
     description: { value: "", error: false },
     status: { value: "", error: false },
   });
+
   useEffect(() => {
     if (task) {
       setFormData({
@@ -36,7 +40,7 @@ const NewTask: React.FC<Props> = (props) => {
       });
     }
   }, [task]);
-  const dispatch = useDispatch();
+
   const handleBlur = (
     e: any,
     field: { value: string; error: boolean },
@@ -53,6 +57,7 @@ const NewTask: React.FC<Props> = (props) => {
       setFormData({ ...formData });
     }
   };
+  
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (formData.status.value == "default" || formData.status.value == "") {

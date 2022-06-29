@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { SEARCH } from "../../store/Task/types";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import "./style.scss";
 
 const Search: React.FC = () => {
-  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+
+  const [search, setSearch] = useState("");
   let searchTimeOut: any = 0;
+
   return (
     <form
       className="searchForm"
