@@ -26,7 +26,7 @@ const Element: React.FC<PropTypes> = (props) => {
 
   const w = window.innerWidth>600?window.innerWidth:window.innerWidth+600
   const des: string = lengthCheck(task.description, w/25);
-  const title: string = lengthCheck(task.title, w/120);
+  const title: string = lengthCheck(task.title, w/100);
   
   useEffect(() => {
     if (searchParams.get("task") === task.id.toString()) {
