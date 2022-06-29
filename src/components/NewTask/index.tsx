@@ -60,9 +60,7 @@ const NewTask: React.FC<Props> = (props) => {
       setFormData({ ...formData });
       return;
     }
-    if (formData.title.error == true) {
-      return;
-    }
+    if (formData.title.error == true) return
     let data = {
       id: formData.id,
       title: formData.title.value,

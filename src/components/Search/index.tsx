@@ -24,7 +24,7 @@ const Search: React.FC = () => {
           } else {
             searchTimeOut = setTimeout(() => {
               dispatch({ search: e.target.value, type: SEARCH });
-            }, 1500);
+            }, 1200);
           }
           setSearch(e.target.value);
         }}

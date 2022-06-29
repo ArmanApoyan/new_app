@@ -24,7 +24,7 @@ const Element: React.FC<PropTypes> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
 
-  const title: string = lengthCheck(task.title, 15);
+  const title: string = lengthCheck(task.title, 13);
   const des: string = lengthCheck(task.description, 40);
 
   useEffect(() => {
