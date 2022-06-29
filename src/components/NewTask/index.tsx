@@ -11,7 +11,6 @@ interface Props {
   type: string;
   task?: Goal;
 }
-
 const NewTask: React.FC<Props> = (props) => {
   const { close, type, task } = props;
   const dispatch = useDispatch();
@@ -78,12 +77,9 @@ const NewTask: React.FC<Props> = (props) => {
     <>{compType != "view" && (
         <form
           className="newTask"
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}>
+          onSubmit={(e) => handleSubmit(e)}>
           {formData.status.error == true && (
-            <p className="error">Select Column</p>
-          )}
+            <p className="error">Select Column</p>)}
           {compType == "add" && (
             <select
               name="status"
@@ -98,10 +94,8 @@ const NewTask: React.FC<Props> = (props) => {
                   <option value={el.title} key={i}>
                     {el.title}
                   </option>
-                );
-              })}
-            </select>
-          )}
+                )})}
+            </select>)}
           {compType == "create" && changeType == "" && (
             <select
               name="status"
@@ -112,17 +106,13 @@ const NewTask: React.FC<Props> = (props) => {
                   return (
                     <option selected value={el.title} key={i}>
                       {el.title}
-                    </option>
-                  );
-                }
+                    </option>)}
                 return (
                   <option value={el.title} key={i}>
                     {el.title}
                   </option>
-                );
-              })}
-            </select>
-          )}
+                )})}
+            </select>)}
           {changeType == "select" && (
             <><select
                 name="status"
@@ -133,8 +123,7 @@ const NewTask: React.FC<Props> = (props) => {
                     <option value={el.title} key={i}>
                       {el.title}
                     </option>
-                  );
-                })}
+                  )})}
               </select>
               <p
                 onDoubleClick={() => setChangeType("input")}
@@ -157,8 +146,7 @@ const NewTask: React.FC<Props> = (props) => {
                 if (!validator(/^\D[a-zA-Z0-9,.!? ]{2,}/, e.target.value)) {
                   formData.title.error = true;
                   setFormData({ ...formData });
-                }
-              }}
+                }}}
               type="text"
               name="title"
               placeholder="Title"
@@ -220,8 +208,7 @@ const NewTask: React.FC<Props> = (props) => {
               onClick={() => clickBack()}>
               <BiArrowBack />
             </button>)}
-        </form>
-      )}
+        </form>)}
       {compType == "view" && (
         <div className="view">
             <p className="id">{task?.id}</p>
