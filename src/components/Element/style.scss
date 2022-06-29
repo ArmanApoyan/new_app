@@ -1,26 +1,21 @@
 .goal {
   min-height: 150px;
-  scroll-behavior: auto;
-  background-color: rgb(214, 210, 210);
+  background-color: rgb(140, 215, 224);
   padding: 10px;
   text-align: left;
   border-radius: 5px;
   width: 80%;
   position: relative;
   user-select: none;
-  overflow: hidden;
   h3 {
     height: 40px;
     white-space:break-spaces;
-    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    font-family:sans-serif ;
   }
   h1 {
     height: 40px;
     scroll-behavior: auto;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    font-family:sans-serif ;
   }
   .x {
     background-color: darkred;

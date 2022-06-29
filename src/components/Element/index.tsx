@@ -84,6 +84,7 @@ const Element: React.FC<PropTypes> = (props) => {
           task={task}
           close={() => {
             setIsOpen(false);
+            setSearchParams("");
           }}
         />
       </Modal>
