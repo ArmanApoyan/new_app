@@ -23,7 +23,7 @@ export const reorder = (
   return result;
 };
 
-export function validator (regex:RegExp, data:any) {
+export function validator (regex:RegExp, data:string) {
   return regex.test(data)
 }
 
@@ -40,9 +40,38 @@ export function getIds (goals:Array<Goal>) {
 export function lengthCheck (string:string, count:number) {
   if (string.length > count) {
     return string.substring(0, count) + "...";
-  } 
-  
-  else {
+  } else {
     return string;
   }
+}
+
+export const handleDblClick = (type:string,compType:CallableFunction,changeType:CallableFunction) => {
+  compType("create");
+  changeType(type);
+}
+
+export const handleBlur = (
+  e: any,
+  field: { value: string; error: boolean },
+  value: string,
+  setFormData:CallableFunction,
+  formData:any
+) => {
+  if (e.target.value == value) {
+    e.target.classList.add("redborder");
+    field.error = true;
+    setFormData({ ...formData });
+  }
+  if (e.target.value != value) {
+    e.target.classList.remove("redborder");
+    field.error = false;
+    setFormData({ ...formData });
+  }
+};
+
+export const handleChange = (e:any,setFormData:CallableFunction,formData:any)=> {
+  setFormData({
+    ...formData,
+    [e.target.name]: { value: e.target.value, error: false },
+  });
 }
