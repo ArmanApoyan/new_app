@@ -14,8 +14,8 @@
   }
   h1 {
     height: 40px;
-    scroll-behavior: auto;
-    font-family:sans-serif ;
+    font-family:sans-serif;
+    padding-top: 15px;
   }
   .x {
     background-color: darkred;
@@ -43,11 +43,11 @@
     background-color: transparent;
     border: none;
     background-color: rgb(119, 162, 241);
+    border: 1px solid black;
     border-radius: 20px;
     padding: 8px;
     width: 36px;
     height: 35px;
-    border: 1px solid black;
     &:hover {
       cursor: pointer;
       background-color: rgb(255, 255, 255);
@@ -56,8 +56,8 @@
   }
 }
 
-@media (max-width:600px){
+@media (max-width:1430px){
   h1 {
-    font-size: 22px;
+    font-size: 25px;
   }
 }
