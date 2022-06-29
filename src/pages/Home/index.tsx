@@ -24,7 +24,7 @@ const ToDo: React.FC = () => {
   
   const handleSearch = useCallback((search: string) => {
     return (elem: Goal) => {
-      if(search.length < 2) {
+      if(search.length <= 2) {
         return elem
       }
       else if(elem.title.toLowerCase().includes(search.toLowerCase())) {
