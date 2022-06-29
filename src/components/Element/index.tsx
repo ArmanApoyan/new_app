@@ -24,17 +24,17 @@ const Element: React.FC<PropTypes> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
 
-  const w = window.innerWidth>600?window.innerWidth:window.innerWidth+600
-  const des: string = lengthCheck(task.description, w/25);
-  const title: string = lengthCheck(task.title, w/100);
-  
+  const w = window.innerWidth > 600 ? window.innerWidth : window.innerWidth + 600;
+  const des: string = lengthCheck(task.description, w / 25);
+  const title: string = lengthCheck(task.title, w / 100);
+
   useEffect(() => {
     if (searchParams.get("task") === task.id.toString()) {
       setIsOpen(true);
       setType("view");
     }
   }, [searchParams]);
-  
+
   return (
     <>
       <Draggable draggableId={task.id.toString()} index={index}>
