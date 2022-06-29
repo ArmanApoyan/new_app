@@ -11,25 +11,9 @@ const ToDo: React.FC = () => {
   const dispatch = useDispatch();
   const { goals, search, columns } = useSelector((state: State) => state.task);
 
-  const [tasks, setTasks] = useState(structuredClone(goals));
-
-  useEffect(() => {
-    setTasks(goals)
-  }, [goals])
-
-  useEffect(() => {
-    search.length > 2
-      ? setTasks([
-          ...goals.filter((el) =>
-            el.title.toLowerCase().includes(search.toLowerCase())
-          ),
-        ])
-      : setTasks([...goals]);
-  }, [search]);
-
   function dragEnd(res: any) {
     let data: Goal[] = reorder(
-      tasks,
+      goals,
       res.source.index,
       res.destination.index,
       res.source.droppableId,
