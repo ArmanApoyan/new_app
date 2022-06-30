@@ -29,7 +29,6 @@
   padding: 20px 0;
   border-radius: 10px;
   box-shadow: 8px 8px 10px rgb(160, 160, 160);
-
   h2 {
     box-sizing: border-box;
     text-align: left;
@@ -38,4 +37,9 @@
     font-family:sans-serif;
     font-size: 25px;
   }
+}
+
+.dragColumn {
+  background-color: #dddddd !important;
+  
 }

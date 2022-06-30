@@ -23,7 +23,7 @@
     }
   }
   .submit {
-    background-color: rgb(51, 141, 129);
+    background-color: rgb(51, 116, 141);
     color: white;
     font-weight: bold;
     width: 120px;
@@ -34,7 +34,7 @@
     font-size: 18px;
     &:hover {
       cursor: pointer;
-      border: 2px solid darkgreen;
+      border: 2px solid rgb(10, 63, 83);
     }
   }
 }

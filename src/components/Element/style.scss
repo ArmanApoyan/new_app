@@ -1,6 +1,6 @@
 .goal {
   min-height: 150px;
-  background-color: rgb(140, 215, 224);
+  background-color: rgb(140, 193, 224);
   padding: 10px;
   text-align: left;
   border-radius: 5px;
@@ -54,6 +54,9 @@
       color: black;
     }
   }
+}
+.goalDrag {
+  background-color: rgb(66, 139, 182) !important;
 }
 
 @media (max-width:1430px){

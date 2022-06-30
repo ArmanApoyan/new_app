@@ -14,6 +14,11 @@
   &:hover {
     background-color: rgb(61, 61, 61);
   }
+  &:focus-within {
+    .searchIcon {
+      color: transparent;
+    }
+  }
   &:focus-visible {
     border: 2px solid white;
     outline: none;
@@ -25,6 +30,12 @@
 }
 .searchForm {
   width: 150px;
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  top:20%;
+  left:45%;
 }
 
 @media (max-width: 400px) {
@@ -36,6 +47,10 @@
   }
   .searchForm {
     width: 100px;
+  }
+  .searchIcon {
+    top:30%;
+    left:60%;
   }
 }
 

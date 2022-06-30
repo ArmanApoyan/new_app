@@ -2,6 +2,7 @@ import { SEARCH } from "../../store/Task/types";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import "./style.scss";
+import { BsSearch } from "react-icons/bs";
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();
@@ -12,10 +13,7 @@ const Search: React.FC = () => {
   return (
     <form
       className="searchForm"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
+      onSubmit={(e) => e.preventDefault()}>
       <input
         onChange={(e) => {
           if (searchTimeOut) {
@@ -33,6 +31,7 @@ const Search: React.FC = () => {
         type="search"
         className="search"
       />
+      <BsSearch className="searchIcon"/>
     </form>
   );
 };

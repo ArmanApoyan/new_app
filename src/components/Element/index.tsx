@@ -34,12 +34,17 @@ const Element: React.FC<PropTypes> = (props) => {
     }
   }, [searchParams]);
 
+  const close = () => {
+    setIsOpen(false);
+    setSearchParams("");
+  };
+
   return (
     <>
       <Draggable draggableId={task.id.toString()} index={index}>
-        {(provided) => (
+        {(provided, snapshot) => (
           <div
-            className="goal"
+            className={snapshot.isDragging?"goal goalDrag":"goal"}
             onDoubleClick={(e) => {
               setIsOpen(true);
               setType("view");
@@ -73,18 +78,12 @@ const Element: React.FC<PropTypes> = (props) => {
       </Draggable>
       <Modal
         isOpen={isOpen}
-        close={() => {
-          setIsOpen(false);
-          setSearchParams("");
-        }}
+        close={() => close()}
       >
         <NewTask
           type={type}
           task={task}
-          close={() => {
-            setIsOpen(false);
-            setSearchParams("");
-          }}
+          close={() => close()}
         />
       </Modal>
     </>

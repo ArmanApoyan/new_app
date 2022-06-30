@@ -21,7 +21,7 @@ const ToDo: React.FC = () => {
     );
     dispatch({ data, type: UPDATE });
   }
-  
+
   const handleSearch = useCallback((search: string) => {
     return (elem: Goal) => {
       if(search.length <= 2) {
@@ -39,11 +39,11 @@ const ToDo: React.FC = () => {
       {columns.map((elm: Column, index: number) => {
         return (
           <Droppable droppableId={elm.title} key={index}>
-            {(provided) => (
+            {(provided,snapshot) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className="columns"
+                className={snapshot.isUsingPlaceholder?"columns dragColumn":"columns"}
               >
                 <h2>{elm.title}</h2>
                 {goals.filter(handleSearch(search)).map((el: Goal, i: number) => {
