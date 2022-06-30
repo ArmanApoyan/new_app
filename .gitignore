@@ -1,1 +1,5 @@
 node_modules
+src/components/Button/__snapshots__
+src/components/Head/__snapshots__
+src/components/Modal/__snapshots__
+src/components/Search/__snapshots__

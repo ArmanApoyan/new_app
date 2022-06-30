@@ -1,7 +1,9 @@
+import { combineReducers, createStore } from "redux";
+import { myReducer } from "../store/Task/reducer";
 import { Goal } from "../types/global";
 
-export function random(numbers: Array<number>) {
-  let n: number = Math.round(Math.random() * 10000);
+export function random(numbers: Array<number>, limit?: number) {
+  let n: number = Math.round(Math.random() * (limit ?? 10000));
   if (!numbers.includes(n)) {
     return n;
   } 
@@ -19,7 +21,12 @@ export const reorder = (
 ): Goal[] => {
   const result = Array.from(tasks);
   const [replaced] = result.splice(start, 1);
-  result.splice(end, 0, {...replaced, status: endCol});
+  if(start == 0){
+    result.splice(end-1>=0?end-1:end, 0, {...replaced, status: endCol});
+  }
+  else {
+    result.splice(end, 0, {...replaced, status: endCol});
+  }
   return result;
 };
 
@@ -74,4 +81,13 @@ export const handleChange = (e:any,setFormData:CallableFunction,formData:any)=> 
     ...formData,
     [e.target.name]: { value: e.target.value, error: false },
   });
+}
+
+export function createTestStore() {
+  const store = createStore(
+    combineReducers({
+      task: myReducer,
+    })
+  );
+  return store;
 }

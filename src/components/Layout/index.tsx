@@ -3,7 +3,7 @@ import Head from "../Head";
 import React from "react";
 import "./style.scss";
 
-const Layout: React.FC<{ children?: any }> = (props) => {
+const Layout: React.FC = (props) => {
   
   return (
     <>

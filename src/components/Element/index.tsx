@@ -57,6 +57,7 @@ const Element: React.FC<PropTypes> = (props) => {
             <h1>{title}</h1>
             <h3>{des}</h3>
             <button
+            type="button"
               className="x"
               onClick={() => {
                 dispatch({ id: task.id, type: DELETE });

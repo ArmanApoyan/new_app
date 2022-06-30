@@ -17,9 +17,9 @@ const Modal: React.FC<Props> = (props) => {
 
   return !!isOpen
     ? ReactDOM.createPortal(
-        <div className="modal">
-          <div className="body" ref={modalBody}>
-            <button onClick={() => close()} className="close">
+        <div className="modal" data-testid="modal">
+          <div data-testid="body" className="body" ref={modalBody}>
+            <button onClick={() => close()} data-testid="btn" className="close">
               X
             </button>
             {children}

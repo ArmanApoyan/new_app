@@ -7,7 +7,7 @@ import { reorder } from "../../utils";
 import { useCallback } from "react";
 import "./style.scss";
 
-const ToDo: React.FC = () => {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { goals, search, columns } = useSelector((state: State) => state.task);
 
@@ -61,4 +61,4 @@ const ToDo: React.FC = () => {
   );
 };
 
-export default ToDo;
+export default Home;
