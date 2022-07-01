@@ -44,6 +44,7 @@ const Element: React.FC<PropTypes> = (props) => {
       <Draggable draggableId={task.id.toString()} index={index}>
         {(provided, snapshot) => (
           <div
+          data-testid="task"
             className={snapshot.isDragging?"goal goalDrag":"goal"}
             onDoubleClick={(e) => {
               setIsOpen(true);
@@ -54,10 +55,11 @@ const Element: React.FC<PropTypes> = (props) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <h1>{title}</h1>
+            <h1 data-testid="title">{title}</h1>
             <h3>{des}</h3>
             <button
             type="button"
+            data-testid="close"
               className="x"
               onClick={() => {
                 dispatch({ id: task.id, type: DELETE });
@@ -66,6 +68,7 @@ const Element: React.FC<PropTypes> = (props) => {
               <MdDelete />
             </button>
             <button
+            data-testid="edit_btn"
               onClick={() => {
                 setIsOpen(true);
                 setType("create");

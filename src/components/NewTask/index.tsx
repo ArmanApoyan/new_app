@@ -80,6 +80,7 @@ const NewTask: React.FC<Props> = (props) => {
             <p className="error">Select Column</p>)}
           {compType == "add" && (
             <select
+            data-testid="select"
               name="status"
               onBlur={(e) => handleBlur(e, formData.status, "default", setFormData, formData)}
               defaultValue={"default"}
@@ -114,6 +115,7 @@ const NewTask: React.FC<Props> = (props) => {
           {changeType == "select" && (
             <><select
                 name="status"
+                data-testid="status"
                 defaultValue={formData.status.value}
                 onChange={(e) => {handleChange(e, setFormData, formData)}}>
                 {columns.map((el: Column, i: number) => {
@@ -139,6 +141,7 @@ const NewTask: React.FC<Props> = (props) => {
           )}
           {changeType == "" && (
             <input
+            data-testid="inp"
               onBlur={(e) => {
                 handleBlur(e, formData.title, "", setFormData, formData);
                 if (!validator(/^\D[a-zA-Z0-9,.!? ]{2,}/, e.target.value)) {
@@ -158,6 +161,7 @@ const NewTask: React.FC<Props> = (props) => {
                 {formData.status.value}
               </p>
               <input
+              data-testid="inp"
                 type="text"
                 placeholder="Title"
                 value={formData.title.value}
@@ -171,6 +175,7 @@ const NewTask: React.FC<Props> = (props) => {
           )}
           {changeType == "" && (
             <textarea
+            data-testid="textarea"
               name="description"
               onChange={(e) => {handleChange(e, setFormData, formData)}}
               value={formData.description.value}
@@ -202,6 +207,7 @@ const NewTask: React.FC<Props> = (props) => {
             </button>)}
           {compType == "create" && changeType != "" && (
             <button
+              data-testid="back"
               className="back"
               onClick={() => clickBack()}>
               <BiArrowBack />
@@ -209,18 +215,21 @@ const NewTask: React.FC<Props> = (props) => {
         </form>)}
       {compType == "view" && (
         <div className="view">
-            <p className="id">{task?.id}</p>
+            <p data-testid="p" className="id">{task?.id}</p>
           <p
+          data-testid="p"
             className="status"
             onDoubleClick={() =>handleDblClick("select",setcompType,setChangeType)}>
             {formData.status.value}
           </p>
           <p
+          data-testid="p"
             className="title"
             onDoubleClick={() =>handleDblClick("input",setcompType,setChangeType)}>
             {formData.title.value}
           </p>
           <p
+          data-testid="p"
             className="des"
             onDoubleClick={() =>handleDblClick("textarea",setcompType,setChangeType)}>
             {formData.description.value}

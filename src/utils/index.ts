@@ -1,5 +1,3 @@
-import { combineReducers, createStore } from "redux";
-import { myReducer } from "../store/Task/reducer";
 import { Goal } from "../types/global";
 
 export function random(numbers: Array<number>, limit?: number) {
@@ -81,13 +79,4 @@ export const handleChange = (e:any,setFormData:CallableFunction,formData:any)=> 
     ...formData,
     [e.target.name]: { value: e.target.value, error: false },
   });
-}
-
-export function createTestStore() {
-  const store = createStore(
-    combineReducers({
-      task: myReducer,
-    })
-  );
-  return store;
 }

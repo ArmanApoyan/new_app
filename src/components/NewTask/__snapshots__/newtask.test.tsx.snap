@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`newtask component test closing after adding 1`] = `
+<div>
+  <form
+    class="newTask"
+  >
+    <p
+      class="error"
+    >
+      Select Column
+    </p>
+    <select
+      data-testid="select"
+      name="status"
+    >
+      <option
+        disabled=""
+        selected=""
+        value="default"
+      >
+        Select Column
+      </option>
+      <option
+        value="To Do"
+      >
+        To Do
+      </option>
+      <option
+        value="On Progress"
+      >
+        On Progress
+      </option>
+      <option
+        value="Done"
+      >
+        Done
+      </option>
+    </select>
+    <input
+      data-testid="inp"
+      name="title"
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <textarea
+      data-testid="textarea"
+      name="description"
+      placeholder="Description"
+    />
+    <button
+      class="submit"
+      type="submit"
+    >
+      ADD
+    </button>
+  </form>
+</div>
+`;
+
+exports[`newtask component test closing after saving 1`] = `
+<div>
+  <form
+    class="newTask"
+  >
+    <p
+      class="error"
+    >
+      Select Column
+    </p>
+    <select
+      name="status"
+    >
+      <option
+        value="To Do"
+      >
+        To Do
+      </option>
+      <option
+        value="On Progress"
+      >
+        On Progress
+      </option>
+      <option
+        value="Done"
+      >
+        Done
+      </option>
+    </select>
+    <input
+      data-testid="inp"
+      name="title"
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <textarea
+      data-testid="textarea"
+      name="description"
+      placeholder="Description"
+    />
+    <button
+      class="submit"
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+`;
+
+exports[`newtask component test newtask rendering 1`] = `
+<div>
+  <form
+    class="newTask"
+  >
+    <input
+      data-testid="inp"
+      name="title"
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <textarea
+      data-testid="textarea"
+      name="description"
+      placeholder="Description"
+    />
+  </form>
+</div>
+`;
+
+exports[`newtask component test view mode 1`] = `
+Array [
+  <p
+    class="id"
+    data-testid="p"
+  />,
+  <p
+    class="status"
+    data-testid="p"
+  />,
+  <p
+    class="title"
+    data-testid="p"
+  />,
+  <p
+    class="des"
+    data-testid="p"
+  />,
+]
+`;

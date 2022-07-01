@@ -41,6 +41,7 @@ const Home: React.FC = () => {
           <Droppable droppableId={elm.title} key={index}>
             {(provided,snapshot) => (
               <div
+              data-testid = "column"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 className={snapshot.isUsingPlaceholder?"columns dragColumn":"columns"}

@@ -1,0 +1,395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Element component test Element rendering 1`] = `
+Array [
+  <div
+    aria-describedby="rbd-hidden-text-0-hidden-text-0"
+    class="goal"
+    data-rbd-drag-handle-context-id="0"
+    data-rbd-drag-handle-draggable-id="1"
+    data-rbd-draggable-context-id="0"
+    data-rbd-draggable-id="1"
+    data-testid="task"
+    draggable="false"
+    role="button"
+    tabindex="0"
+  >
+    <h1
+      data-testid="title"
+    >
+      Task 1
+    </h1>
+    <h3>
+      Description 1
+    </h3>
+    <button
+      class="x"
+      data-testid="close"
+      type="button"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+        />
+      </svg>
+    </button>
+    <button
+      class="edit"
+      data-testid="edit_btn"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+        />
+      </svg>
+    </button>
+  </div>,
+  <div
+    aria-describedby="rbd-hidden-text-0-hidden-text-0"
+    class="goal"
+    data-rbd-drag-handle-context-id="0"
+    data-rbd-drag-handle-draggable-id="2"
+    data-rbd-draggable-context-id="0"
+    data-rbd-draggable-id="2"
+    data-testid="task"
+    draggable="false"
+    role="button"
+    tabindex="0"
+  >
+    <h1
+      data-testid="title"
+    >
+      Task 2
+    </h1>
+    <h3>
+      Description 2
+    </h3>
+    <button
+      class="x"
+      data-testid="close"
+      type="button"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+        />
+      </svg>
+    </button>
+    <button
+      class="edit"
+      data-testid="edit_btn"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+        />
+      </svg>
+    </button>
+  </div>,
+  <div
+    aria-describedby="rbd-hidden-text-0-hidden-text-0"
+    class="goal"
+    data-rbd-drag-handle-context-id="0"
+    data-rbd-drag-handle-draggable-id="3"
+    data-rbd-draggable-context-id="0"
+    data-rbd-draggable-id="3"
+    data-testid="task"
+    draggable="false"
+    role="button"
+    tabindex="0"
+  >
+    <h1
+      data-testid="title"
+    >
+      Task 3
+    </h1>
+    <h3>
+      Description 3
+    </h3>
+    <button
+      class="x"
+      data-testid="close"
+      type="button"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+        />
+      </svg>
+    </button>
+    <button
+      class="edit"
+      data-testid="edit_btn"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+        />
+      </svg>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Element component test close button click 1`] = `
+<div
+  class="modal"
+  data-testid="modal"
+>
+  <div
+    class="body"
+    data-testid="body"
+  >
+    <button
+      class="close"
+      data-testid="btn"
+    >
+      X
+    </button>
+    <form
+      class="newTask"
+    >
+      <select
+        name="status"
+      >
+        <option
+          value="To Do"
+        >
+          To Do
+        </option>
+        <option
+          value="On Progress"
+        >
+          On Progress
+        </option>
+        <option
+          value="Done"
+        >
+          Done
+        </option>
+      </select>
+      <input
+        data-testid="inp"
+        name="title"
+        placeholder="Title"
+        type="text"
+        value="Task 2"
+      />
+      <textarea
+        data-testid="textarea"
+        name="description"
+        placeholder="Description"
+      >
+        Description 2
+      </textarea>
+      <button
+        class="submit"
+        type="submit"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Element component test dblclick on task opening modal 1`] = `
+<div
+  class="modal"
+  data-testid="modal"
+>
+  <div
+    class="body"
+    data-testid="body"
+  >
+    <button
+      class="close"
+      data-testid="btn"
+    >
+      X
+    </button>
+    <div
+      class="view"
+    >
+      <p
+        class="id"
+        data-testid="p"
+      >
+        2
+      </p>
+      <p
+        class="status"
+        data-testid="p"
+      >
+        On Progress
+      </p>
+      <p
+        class="title"
+        data-testid="p"
+      >
+        Task 2
+      </p>
+      <p
+        class="des"
+        data-testid="p"
+      >
+        Description 2
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Element component test dblclick on task opening modal 2`] = `
+<div
+  class="modal"
+  data-testid="modal"
+>
+  <div
+    class="body"
+    data-testid="body"
+  >
+    <button
+      class="close"
+      data-testid="btn"
+    >
+      X
+    </button>
+    <div
+      class="view"
+    >
+      <p
+        class="id"
+        data-testid="p"
+      >
+        2
+      </p>
+      <p
+        class="status"
+        data-testid="p"
+      >
+        On Progress
+      </p>
+      <p
+        class="title"
+        data-testid="p"
+      >
+        Task 2
+      </p>
+      <p
+        class="des"
+        data-testid="p"
+      >
+        Description 2
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Element component test modal 1`] = `
+<div
+  class="modal"
+  data-testid="modal"
+>
+  <div
+    class="body"
+    data-testid="body"
+  >
+    <button
+      class="close"
+      data-testid="btn"
+    >
+      X
+    </button>
+    <div
+      class="view"
+    >
+      <p
+        class="id"
+        data-testid="p"
+      >
+        2
+      </p>
+      <p
+        class="status"
+        data-testid="p"
+      >
+        On Progress
+      </p>
+      <p
+        class="title"
+        data-testid="p"
+      >
+        Task 2
+      </p>
+      <p
+        class="des"
+        data-testid="p"
+      >
+        Description 2
+      </p>
+    </div>
+  </div>
+</div>
+`;
