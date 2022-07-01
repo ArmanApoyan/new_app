@@ -3,3 +3,6 @@ src/components/Button/__snapshots__
 src/components/Head/__snapshots__
 src/components/Modal/__snapshots__
 src/components/Search/__snapshots__
+src/components/Element/__snapshots__
+src/components/NewTask/__snapshots__
+src/pages/Home/__snapshots__
