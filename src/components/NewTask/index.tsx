@@ -50,17 +50,17 @@ const NewTask: React.FC<Props> = (props) => {
   }
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (formData.status.value == "default" || formData.status.value == "") {
+    if (formData.status.value === "default" || formData.status.value === "") {
       setFormData({ ...formData });
       formData.status.error = true;
       return;
     }
-    if (formData.title.value == "") {
+    if (formData.title.value === "") {
       formData.title.error = true;
       setFormData({ ...formData });
       return;
     }
-    if (formData.title.error == true) return
+    if (formData.title.error === true) return
     let data = {
       id: formData.id,
       title: formData.title.value,
@@ -72,13 +72,13 @@ const NewTask: React.FC<Props> = (props) => {
     close();
   };
   return (
-    <>{compType != "view" && (
+    <>{compType !== "view" && (
         <form
           className="newTask"
           onSubmit={(e) => handleSubmit(e)}>
-          {formData.status.error == true && (
+          {formData.status.error === true && (
             <p className="error">Select Column</p>)}
-          {compType == "add" && (
+          {compType === "add" && (
             <select
             data-testid="select"
               name="status"
@@ -95,13 +95,13 @@ const NewTask: React.FC<Props> = (props) => {
                   </option>
                 )})}
             </select>)}
-          {compType == "create" && changeType == "" && (
+          {compType === "create" && changeType === "" && (
             <select
               name="status"
               defaultValue={formData.status.value}
               onChange={(e) => {handleChange(e, setFormData, formData)}}>
               {columns.map((el: Column, i: number) => {
-                if (el.title == formData.status.value) {
+                if (el.title === formData.status.value) {
                   return (
                     <option selected value={el.title} key={i}>
                       {el.title}
@@ -112,7 +112,7 @@ const NewTask: React.FC<Props> = (props) => {
                   </option>
                 )})}
             </select>)}
-          {changeType == "select" && (
+          {changeType === "select" && (
             <><select
                 name="status"
                 data-testid="status"
@@ -136,10 +136,10 @@ const NewTask: React.FC<Props> = (props) => {
                 {formData.description.value}
               </p></>
           )}
-          {formData.title.error == true && (
+          {formData.title.error === true && (
             <p className="error">Title is incorrect</p>
           )}
-          {changeType == "" && (
+          {changeType === "" && (
             <input
             data-testid="inp"
               onBlur={(e) => {
@@ -154,7 +154,7 @@ const NewTask: React.FC<Props> = (props) => {
               value={formData.title.value}
               onChange={(e) => {handleChange(e, setFormData, formData)}}/>
           )}
-          {changeType == "input" && (
+          {changeType === "input" && (
             <><p
                 onDoubleClick={() => setChangeType("select")}
                 className="view_status">
@@ -173,7 +173,7 @@ const NewTask: React.FC<Props> = (props) => {
                 {formData.description.value}
               </p></>
           )}
-          {changeType == "" && (
+          {changeType === "" && (
             <textarea
             data-testid="textarea"
               name="description"
@@ -181,7 +181,7 @@ const NewTask: React.FC<Props> = (props) => {
               value={formData.description.value}
               placeholder="Description"/>
           )}
-          {changeType == "textarea" && (
+          {changeType === "textarea" && (
             <><p
                 onDoubleClick={() =>setChangeType("select")}
                 className="view_status">
@@ -197,15 +197,15 @@ const NewTask: React.FC<Props> = (props) => {
               onChange={(e) => {handleChange(e, setFormData, formData)}}
                 value={formData.description.value}
                 placeholder="Description"/></>)}
-          {compType == "add" && (
+          {compType === "add" && (
             <button className="submit" type="submit">
               ADD
             </button>)}
-          {compType == "create" && (
+          {compType === "create" && (
             <button className="submit" type="submit">
               Save
             </button>)}
-          {compType == "create" && changeType != "" && (
+          {compType === "create" && changeType !== "" && (
             <button
               data-testid="back"
               className="back"
@@ -213,7 +213,7 @@ const NewTask: React.FC<Props> = (props) => {
               <BiArrowBack />
             </button>)}
         </form>)}
-      {compType == "view" && (
+      {compType === "view" && (
         <div className="view">
             <p data-testid="p" className="id">{task?.id}</p>
           <p
