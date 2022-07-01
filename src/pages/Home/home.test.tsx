@@ -16,7 +16,7 @@ describe("Home component test", () => {
     );
     expect(container).toMatchSnapshot();
   });
-  it("columns rendering",()=>{
+  it("columns rendering", () => {
     let store = createTestStore();
     render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "search" }]}>
@@ -25,7 +25,7 @@ describe("Home component test", () => {
         </Provider>
       </MemoryRouter>
     );
-    const columns = screen.getAllByTestId("column")
-    expect(columns).toMatchSnapshot()
-  })
+    const columns = screen.getAllByTestId("column");
+    expect(columns).toMatchSnapshot();
+  });
 });

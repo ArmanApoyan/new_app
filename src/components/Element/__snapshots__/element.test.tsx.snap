@@ -191,7 +191,54 @@ Array [
 ]
 `;
 
-exports[`Element component test close button click 1`] = `
+exports[`Element component test dblclick on task opening modal 1`] = `
+<div
+  class="modal"
+  data-testid="modal"
+>
+  <div
+    class="body"
+    data-testid="body"
+  >
+    <button
+      class="close"
+      data-testid="btn"
+    >
+      X
+    </button>
+    <div
+      class="view"
+    >
+      <p
+        class="id"
+        data-testid="p"
+      >
+        2
+      </p>
+      <p
+        class="status"
+        data-testid="p"
+      >
+        On Progress
+      </p>
+      <p
+        class="title"
+        data-testid="p"
+      >
+        Task 2
+      </p>
+      <p
+        class="des"
+        data-testid="p"
+      >
+        Description 2
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Element component test edit button click 1`] = `
 <div
   class="modal"
   data-testid="modal"
@@ -249,147 +296,6 @@ exports[`Element component test close button click 1`] = `
         Save
       </button>
     </form>
-  </div>
-</div>
-`;
-
-exports[`Element component test dblclick on task opening modal 1`] = `
-<div
-  class="modal"
-  data-testid="modal"
->
-  <div
-    class="body"
-    data-testid="body"
-  >
-    <button
-      class="close"
-      data-testid="btn"
-    >
-      X
-    </button>
-    <div
-      class="view"
-    >
-      <p
-        class="id"
-        data-testid="p"
-      >
-        2
-      </p>
-      <p
-        class="status"
-        data-testid="p"
-      >
-        On Progress
-      </p>
-      <p
-        class="title"
-        data-testid="p"
-      >
-        Task 2
-      </p>
-      <p
-        class="des"
-        data-testid="p"
-      >
-        Description 2
-      </p>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Element component test dblclick on task opening modal 2`] = `
-<div
-  class="modal"
-  data-testid="modal"
->
-  <div
-    class="body"
-    data-testid="body"
-  >
-    <button
-      class="close"
-      data-testid="btn"
-    >
-      X
-    </button>
-    <div
-      class="view"
-    >
-      <p
-        class="id"
-        data-testid="p"
-      >
-        2
-      </p>
-      <p
-        class="status"
-        data-testid="p"
-      >
-        On Progress
-      </p>
-      <p
-        class="title"
-        data-testid="p"
-      >
-        Task 2
-      </p>
-      <p
-        class="des"
-        data-testid="p"
-      >
-        Description 2
-      </p>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Element component test modal 1`] = `
-<div
-  class="modal"
-  data-testid="modal"
->
-  <div
-    class="body"
-    data-testid="body"
-  >
-    <button
-      class="close"
-      data-testid="btn"
-    >
-      X
-    </button>
-    <div
-      class="view"
-    >
-      <p
-        class="id"
-        data-testid="p"
-      >
-        2
-      </p>
-      <p
-        class="status"
-        data-testid="p"
-      >
-        On Progress
-      </p>
-      <p
-        class="title"
-        data-testid="p"
-      >
-        Task 2
-      </p>
-      <p
-        class="des"
-        data-testid="p"
-      >
-        Description 2
-      </p>
-    </div>
   </div>
 </div>
 `;

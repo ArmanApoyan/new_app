@@ -11,7 +11,7 @@ const Button: React.FC<PropTypes> = (props) => {
   const { children, onClick, className } = props;
   
   return (
-    <button className={className} onClick={onClick}>
+    <button data-testid="add" className={className} onClick={onClick}>
       {children}
     </button>
   );

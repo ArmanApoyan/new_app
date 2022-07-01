@@ -42,7 +42,7 @@ describe("Element component test", () => {
     fireEvent.dblClick(tasks[0]);
     expect(history.location.search).toBe("?task=2");
   });
-  it("close button click", () => {
+  it("edit button click", () => {
     const { container } = render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "task=1" }]}>
         <Provider store={store}>
@@ -80,4 +80,5 @@ describe("Element component test", () => {
     fireEvent.click(body)
     expect(body).toBeInTheDocument()   
   });
+  
 });
