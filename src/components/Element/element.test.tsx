@@ -72,7 +72,7 @@ describe("Element component test", () => {
     expect(screen.getByTestId("modal")).toMatchSnapshot();
   });
   
-  it("modal outside click", () => {
+  it("modal inside click", () => {
     const { container } = render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "task=1" }]}>
         <Provider store={store}>
