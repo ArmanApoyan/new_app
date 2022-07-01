@@ -1,7 +1,7 @@
 import "./style.scss";
 import ReactDOM from "react-dom";
 import React, { useRef } from "react";
-import useOutsideClick from "../../hooks";
+import useOutsideClick from "../../hooks/outSideClick";
 
 interface Props {
   children: React.ReactChild | React.ReactChild[];
