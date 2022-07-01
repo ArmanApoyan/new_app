@@ -3,11 +3,13 @@ import Modal from "./"
 
 
 describe("modal test",()=> {
+    
     it("modal rendering",()=>{
         const close = jest.fn()
         const {container} =  render(<Modal isOpen={true} close={close}><p>asd</p></Modal>)
         expect(container).toMatchSnapshot()     
     })  
+    
     it("modal close",()=>{
         const close = jest.fn()
         render(<Modal isOpen={true} close={close}><p>asd</p></Modal>)
@@ -15,11 +17,4 @@ describe("modal test",()=> {
         fireEvent.click(btn)
         expect(close).toBeCalled()
     })
-    // it("modal outside click",()=>{
-    //     const close = jest.fn()
-    //     render(<Modal isOpen={true} close={close}><p>asd</p></Modal>)
-    //     const modal = screen.getByTestId("modal")
-    //     fireEvent.click(modal)
-    //     expect(close).toBeCalled()
-    // })
 })

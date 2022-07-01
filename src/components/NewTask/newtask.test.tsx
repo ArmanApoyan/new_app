@@ -5,6 +5,7 @@ import { createTestStore } from "../../testUtils/testUtils";
 import NewTask from "./";
 
 describe("newtask component test", () => {
+  
   it("newtask rendering", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -15,6 +16,7 @@ describe("newtask component test", () => {
     );
     expect(container).toMatchSnapshot();
   });
+  
   it("closing after adding", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -27,6 +29,7 @@ describe("newtask component test", () => {
     fireEvent.click(btn)
     expect(container).toMatchSnapshot()
   });
+  
   it("closing after saving", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -39,6 +42,7 @@ describe("newtask component test", () => {
     fireEvent.click(btn)
     expect(container).toMatchSnapshot()
   });
+  
   it("input changing", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -51,6 +55,7 @@ describe("newtask component test", () => {
     userEvent.type(inp,"title")
     expect(inp).toHaveValue("title")
   });
+  
   it("textarea changing", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -63,6 +68,7 @@ describe("newtask component test", () => {
     userEvent.type(textarea,"description")
     expect(textarea).toHaveValue("description")
   });
+  
   it("view mode", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -74,6 +80,7 @@ describe("newtask component test", () => {
     const ps = screen.getAllByTestId("p")
     expect(ps).toMatchSnapshot()
   });
+  
   it("select changing", () => {
     let store = createTestStore();
     const close = jest.fn();
@@ -88,6 +95,7 @@ describe("newtask component test", () => {
     userEvent.selectOptions(select,"On Progress")
     expect(select).toHaveValue("On Progress")
   });
+  
   it("back button", () => {
     let store = createTestStore();
     const close = jest.fn();

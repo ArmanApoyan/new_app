@@ -5,6 +5,7 @@ import { createTestStore } from "../../testUtils/testUtils";
 
 
 describe("Head component test",()=>{
+    
     it("Head rendering",()=>{
         const store = createTestStore()
         const {container} = render(
@@ -14,6 +15,7 @@ describe("Head component test",()=>{
         )
         expect(container).toMatchSnapshot()
     })
+    
     it("modal opening",()=>{
         const store = createTestStore()
         const {container} = render(

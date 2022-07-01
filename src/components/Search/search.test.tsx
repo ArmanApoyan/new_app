@@ -7,6 +7,7 @@ import userEvent from "@testing-library/user-event";
 const mockStore = configureStore();
 
 describe("Search component test", () => {
+  
   it("search rendering", () => {
     const initState = {};
     const store = mockStore(initState);

@@ -5,6 +5,7 @@ import { createTestStore } from "../../testUtils/testUtils";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Home component test", () => {
+  
   it("home rendering", () => {
     let store = createTestStore();
     const { container } = render(
@@ -16,6 +17,7 @@ describe("Home component test", () => {
     );
     expect(container).toMatchSnapshot();
   });
+  
   it("columns rendering", () => {
     let store = createTestStore();
     render(

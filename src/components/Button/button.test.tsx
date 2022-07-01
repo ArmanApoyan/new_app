@@ -2,6 +2,7 @@ import Button from "./";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 describe("test Button component", () => {
+    
     it("renders correctly", () => {
         const { container } = render(<Button>asd</Button>);
         expect(container).toMatchSnapshot();
