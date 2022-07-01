@@ -5,9 +5,9 @@ import { createTestStore } from "../../testUtils/testUtils";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Home component test", () => {
-  
+  let store = createTestStore();
+
   it("home rendering", () => {
-    let store = createTestStore();
     const { container } = render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "search" }]}>
         <Provider store={store}>
@@ -19,7 +19,6 @@ describe("Home component test", () => {
   });
   
   it("columns rendering", () => {
-    let store = createTestStore();
     render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "search" }]}>
         <Provider store={store}>

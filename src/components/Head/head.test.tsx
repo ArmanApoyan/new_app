@@ -5,9 +5,9 @@ import { createTestStore } from "../../testUtils/testUtils";
 
 
 describe("Head component test",()=>{
-    
+    const store = createTestStore()
+
     it("Head rendering",()=>{
-        const store = createTestStore()
         const {container} = render(
         <Provider store={store}>
             <Head/>
@@ -17,7 +17,6 @@ describe("Head component test",()=>{
     })
     
     it("modal opening",()=>{
-        const store = createTestStore()
         const {container} = render(
         <Provider store={store}>
             <Head/>

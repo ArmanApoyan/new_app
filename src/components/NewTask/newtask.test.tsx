@@ -5,10 +5,10 @@ import { createTestStore } from "../../testUtils/testUtils";
 import NewTask from "./";
 
 describe("newtask component test", () => {
-  
+  const store = createTestStore();
+  const close = jest.fn();
+
   it("newtask rendering", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     const { container } = render(
       <Provider store={store}>
         <NewTask close={close} type="" />
@@ -18,8 +18,6 @@ describe("newtask component test", () => {
   });
   
   it("closing after adding", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     const { container } = render(
       <Provider store={store}>
         <NewTask close={close} type="add" />
@@ -31,8 +29,6 @@ describe("newtask component test", () => {
   });
   
   it("closing after saving", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     const { container } = render(
       <Provider store={store}>
         <NewTask close={close} type="create" />
@@ -44,8 +40,6 @@ describe("newtask component test", () => {
   });
   
   it("input changing", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     render(
       <Provider store={store}>
         <NewTask close={close} type="add" />
@@ -57,8 +51,6 @@ describe("newtask component test", () => {
   });
   
   it("textarea changing", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     render(
       <Provider store={store}>
         <NewTask close={close} type="add" />
@@ -70,8 +62,6 @@ describe("newtask component test", () => {
   });
   
   it("view mode", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     render(
       <Provider store={store}>
         <NewTask close={close} type="view" />
@@ -82,8 +72,6 @@ describe("newtask component test", () => {
   });
   
   it("select changing", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     render(
       <Provider store={store}>
         <NewTask close={close} type="add" />
@@ -97,8 +85,6 @@ describe("newtask component test", () => {
   });
   
   it("back button", () => {
-    let store = createTestStore();
-    const close = jest.fn();
     render(
       <Provider store={store}>
         <NewTask close={close} type="view" />
@@ -111,5 +97,6 @@ describe("newtask component test", () => {
     userEvent.type(status,"asd")
     fireEvent.click(screen.getByTestId("back"))
     expect(screen.getAllByTestId("p")[2].innerText).toEqual(value)
+    expect(ps).toMatchSnapshot()
   });
 });

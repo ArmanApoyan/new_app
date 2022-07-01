@@ -1,16 +1,14 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import Search from "./";
-import configureStore from "redux-mock-store";
 import userEvent from "@testing-library/user-event";
+import { createTestStore } from "../../testUtils/testUtils";
 
-const mockStore = configureStore();
 
 describe("Search component test", () => {
-  
+  const store = createTestStore()
+
   it("search rendering", () => {
-    const initState = {};
-    const store = mockStore(initState);
     const { container } = render(
       <Provider store={store}>
         <Search />
@@ -20,8 +18,6 @@ describe("Search component test", () => {
   });
   
   it("input rendering", () => {
-    const initState = {};
-    const store = mockStore(initState);
     render(
       <Provider store={store}>
         <Search />
@@ -33,8 +29,6 @@ describe("Search component test", () => {
   });
 
   it ("input change",()=>{
-    const initState = {};
-    const store = mockStore(initState);
     render(
       <Provider store={store}>
         <Search />

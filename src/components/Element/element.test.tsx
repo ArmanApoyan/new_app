@@ -6,8 +6,8 @@ import { createTestStore } from "../../testUtils/testUtils";
 import { createMemoryHistory } from "history";
 
 describe("Element component test", () => {
-  let store = createTestStore();
-  
+  const store = createTestStore();
+
   it("Element rendering", () => {
     render(
       <MemoryRouter initialEntries={[{ pathname: "/", search: "task=1" }]}>
