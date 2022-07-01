@@ -43,4 +43,5 @@ describe("modal test", () => {
     fireEvent.mouseDown(screen.getByTestId("body"));
     expect(close).not.toBeCalled();
   });
+
 });
