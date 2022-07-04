@@ -4,7 +4,6 @@ import { MemoryRouter, Router } from "react-router-dom";
 import Home from "../../pages/Home";
 import { createTestStore } from "../../testUtils/testUtils";
 import { createMemoryHistory } from "history";
-import useOutsideClick from "../../hooks/outSideClick";
 
 describe("Element component test", () => {
   const store = createTestStore();
@@ -87,21 +86,4 @@ describe("Element component test", () => {
     fireEvent.click(body);
     expect(body).toBeInTheDocument();
   });
-  
-  // it("modal outside click", () => {
-  //   const fun = jest.fn()
-  //   const { container } = render(
-  //     <MemoryRouter initialEntries={[{ pathname: "/", search: "task=1" }]}>
-  //       <Provider store={store}>
-  //         <Home />
-  //       </Provider>
-  //     </MemoryRouter>
-  //   );
-  //   fireEvent.dblClick(screen.getAllByTestId("task")[0])
-  //   const body = screen.getByTestId("body")
-  //   useOutsideClick(body,fun)
-  //   const modal = screen.getByTestId("modal")
-  //   fireEvent.click(modal)
-  //   expect(body).not.toBeInTheDocument()
-  // });
 });

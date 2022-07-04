@@ -8,12 +8,11 @@ describe("test Button component", () => {
         expect(container).toMatchSnapshot();
     });
 
-    it("check call onClick event", () => {
+    it("click event", () => {
         const fn = jest.fn();
         render(<Button onClick={fn}>qwe</Button>);
         const btn = screen.getByRole("button");
         fireEvent.click(btn);
         expect(fn).toBeCalled();
     })
-    
 })
