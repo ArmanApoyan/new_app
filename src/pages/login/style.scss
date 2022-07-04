@@ -57,3 +57,19 @@
         text-transform: uppercase;
     }
 }
+.error {
+    color: red;
+    margin:0 0 25px 0;
+    padding: 0;
+}
+
+@media (max-width:530px){
+    .reg_input {
+        width: 250px !important;
+    }
+}
+@media (max-width:330px){
+    .reg_input {
+        width: 200px !important;
+    }
+}
