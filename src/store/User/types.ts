@@ -1,0 +1,1 @@
+export const USER_LOG = "user log in"

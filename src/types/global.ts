@@ -13,3 +13,7 @@ export interface State {
     search:string,
   };
 }
+
+export interface userStateType {
+  user:Array<object>
+}

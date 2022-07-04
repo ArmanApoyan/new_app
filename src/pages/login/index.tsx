@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { userLog, userReg } from "../../store/User/action";
 import "./style.scss";
 
 const Log: React.FC = () => {
@@ -19,6 +20,7 @@ const Log: React.FC = () => {
             className="reg_form"
             onSubmit={handleSubmit((data) => {
               console.log(data);
+              userReg(data)
               reset();
             })}>
             <div className="reg_div">
@@ -85,6 +87,7 @@ const Log: React.FC = () => {
                 delete data.email;
               }
               console.log(data);
+              userLog(data)
               reset();
             })}>
             <div className="reg_div">
