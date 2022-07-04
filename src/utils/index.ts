@@ -42,7 +42,7 @@ export function getIds (goals:Array<Goal>) {
   }
 }
 
-export function lengthCheck (string:string, count:number) {
+export function lengthCheck (string:string, count:number=0) {
   if (string.length > count) {
     return string.substring(0, count) + "...";
   } else {

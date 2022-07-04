@@ -4,7 +4,7 @@ import { random, lengthCheck, getIds } from "./";
 
 const numbers = [0, 1, 3, 5];
 
-describe("Randomly Block", () => {
+describe("util function test", () => {
     it("check random function logic 1", () => {
         const newNumber = random(numbers);
         expect(numbers.includes(newNumber ?? 1)).toBeFalsy();
@@ -37,5 +37,13 @@ describe("lengthCheck function test", ()=> {
     it("check function 1",()=> {
         const res = lengthCheck("asd",10)
         expect(typeof res).toEqual("string")
+    })
+    it("check function 2",()=> {
+        const res = lengthCheck("aaa",0)
+        expect(res.length).toEqual(3)
+    })
+    it("check function 3",()=> {
+        const res = lengthCheck("aaa",0)
+        expect(res.length).toEqual(3)
     })
 })
