@@ -1,14 +1,17 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { Column, Goal, State } from "../../types/global";
+import { Column, Goal, State, userStateType } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
 import { UPDATE } from "../../store/Task/types";
 import Element from "../../components/Element";
 import { reorder } from "../../utils";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import "./style.scss";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  // const navigate = useNavigate()
   const dispatch = useDispatch();
+  // const {user} = useSelector((state:userStateType)=>state.user)
   const { goals, search, columns } = useSelector((state: State) => state.task);
 
   function dragEnd(res: any) {

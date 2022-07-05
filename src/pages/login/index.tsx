@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { userLog, userReg } from "../../store/User/action";
+import { userStateType } from "../../types/global";
 import "./style.scss";
 
 const Log: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [type, setType] = useState("log");
+  // const {user} = useSelector((state:userStateType)=>state.user)
+  
   const {
     register,
     handleSubmit,
@@ -20,9 +28,10 @@ const Log: React.FC = () => {
             className="reg_form"
             onSubmit={handleSubmit((data) => {
               console.log(data);
-              userReg(data)
+              userReg(data);
               reset();
-            })}>
+            })}
+          >
             <div className="reg_div">
               <label>Username</label>
               <input
@@ -71,7 +80,8 @@ const Log: React.FC = () => {
             className="type"
             onClick={() => {
               setType("log");
-            }}>
+            }}
+          >
             Log In
           </p>
         </div>
@@ -87,9 +97,12 @@ const Log: React.FC = () => {
                 delete data.email;
               }
               console.log(data);
-              userLog(data)
+              // @ts-ignore
+              dispatch(userLog(data));
+              navigate("/")
               reset();
-            })}>
+            })}
+          >
             <div className="reg_div">
               <label>Username</label>
               <input
@@ -118,7 +131,8 @@ const Log: React.FC = () => {
             className="type"
             onClick={() => {
               setType("reg");
-            }}>
+            }}
+          >
             Sign Up
           </p>
         </div>

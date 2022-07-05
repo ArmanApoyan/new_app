@@ -4,13 +4,29 @@ import { axiosPost } from "../../config/axios";
 import { USER_LOG } from "./types";
 
 export async function userReg(data: object) {
-  axiosPost("regUser", data);
+  const result = await axiosPost("regUser", data);
+  if (result.error) {
+    alert(result.error);
+  }
 }
 
-export async function userLog(data: object) {
-  const result = await axiosPost("logUser", data);
-  console.log(result);
-  return (dispatch: Dispatch<AnyAction>) => {
-    dispatch({ data: result, type: USER_LOG });
+function logUser(result: any) {
+  return {
+    type: USER_LOG,
+    data: result,
+  };
+}
+
+export function userLog(data: object) {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const result = await axiosPost("logUser", data);
+    console.log(result.data);
+    
+    if (result.error) {
+      alert(result.error);
+    }
+    if (result.data) {
+        dispatch(logUser(result.data));
+    }
   };
 }

@@ -12,3 +12,16 @@
     cursor: pointer;
   }
 }
+
+.login {
+  background-color: #4185b6;
+  height: 25px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: rgb(61, 61, 61);
+    cursor: pointer;
+  }
+}

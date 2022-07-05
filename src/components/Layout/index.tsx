@@ -3,6 +3,7 @@ import Head from "../Head";
 import React from "react";
 import "./style.scss";
 
+
 const Layout: React.FC = (props) => {
   const location = useLocation()
   return (

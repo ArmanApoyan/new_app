@@ -1,6 +1,7 @@
 import { ADD_TASK, CHANGE, DELETE, SEARCH, UPDATE } from "./types";
 import { Column, Goal } from "../../types/global";
 import { myState } from "./state";
+import { axiosPost } from "../../config/axios";
 
 interface state {
   columns: Array<Column>;

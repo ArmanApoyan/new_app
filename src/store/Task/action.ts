@@ -2,8 +2,10 @@ import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH } from "./types";
 import { Goal } from "../../types/global";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
+import { TodosService } from "../../service/todosService/todos-service";
+import { axiosPost } from "../../config/axios";
 
-export function addTask(data: Goal) {
+function addTask(data: Goal) {
   return {
     type: ADD_TASK,
     data,
@@ -40,17 +42,20 @@ const creatAction = (data: any) => {
 };
 
 export const action1 = (type: string, task: any) => {
-  return (dispatch: Dispatch<AnyAction>) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     if (type == "create") {
       dispatch(creatAction(task));
-    } 
-    else dispatch(addAction(task));
+    } else {
+      const tasks = await axiosPost("/addTask", task)
+      console.log(tasks);
+      dispatch(addAction(task));
+    }
   };
 };
 
-export function searchTask(search:string) {
-    return {
-      type: SEARCH,
-      search,
-    };
-  }
+export function searchTask(search: string) {
+  return {
+    type: SEARCH,
+    search,
+  };
+}

@@ -15,5 +15,7 @@ export interface State {
 }
 
 export interface userStateType {
-  user:Array<object>
+  user:{
+    user:{username:string}
+  }
 }
