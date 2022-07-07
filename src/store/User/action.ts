@@ -30,8 +30,15 @@ export function userLog(data: object) {
     }
     if (result.data) {
         localStorage.token = result.token
+        localStorage.refresh = result.refresh
         localStorage.userId = result.id
         dispatch(logUser(result.data));
     }
   };
+}
+
+export async function refreshToken () {
+  const newToken =  await axiosPost("/refresh", {refresh:localStorage.refresh}, localStorage.token).then(res=>{
+    localStorage.token = newToken 
+  })
 }
