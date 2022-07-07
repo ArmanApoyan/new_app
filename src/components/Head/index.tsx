@@ -30,6 +30,7 @@ const Head: React.FC = () => {
             className="login"
             onClick={() => {
               localStorage.removeItem("token")
+              localStorage.removeItem("userId")
               navigate("/log")
             }}
           >

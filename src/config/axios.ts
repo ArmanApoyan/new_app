@@ -6,18 +6,18 @@ const Axios = axios.create({
 Axios.defaults.baseURL = "http://localhost:5000/";
 Axios.defaults.timeout = 5000;
 
-export const axiosPost = async (url: string, data: any, token: string = "") => {
+export const axiosPost = async (url: string, data: any, token: string = "", userId:string="") => {
   return await Axios.post(
     url,
     { data },
     {
-      headers: { Authorization: token },
+      headers: { Authorization: token, userId:userId },
     }
   ).then((res) => res.data);
 };
 
-export const axiosGet = async (url: string, token: string) => {
+export const axiosGet = async (url: string, token: string, userId:string="") => {
   return await Axios.get(url, {
-    headers: { Authorization: token },
+    headers: { Authorization: token, userId:userId },
   }).then((res) => res.data);
 };

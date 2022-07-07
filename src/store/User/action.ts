@@ -30,6 +30,7 @@ export function userLog(data: object) {
     }
     if (result.data) {
         localStorage.token = result.token
+        localStorage.userId = result.id
         dispatch(logUser(result.data));
     }
   };

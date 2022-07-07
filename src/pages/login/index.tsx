@@ -99,7 +99,7 @@ const Log: React.FC = () => {
               dispatch(userLog(data));
               setTimeout(()=>{
                 navigate("/")
-              },300)
+              },500)
               reset();
             })}
           >

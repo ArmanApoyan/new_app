@@ -13,7 +13,7 @@ function setTasks(result: [Goal]) {
 
 export function getTasks() {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const { result } = await axiosGet("/getTasks", localStorage.token);
+    const { result } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
     result.map((el: any) => delete el.__v);
     console.log(result);
     dispatch(setTasks(result));
@@ -34,7 +34,8 @@ export const action1 = (type: string, task: any) => {
       axiosPost("/updateTask", task, localStorage.token);
       dispatch(updateTask(task));
     } else {
-      axiosPost("/addTask", task, localStorage.token);
+      const data = {...task,userId:localStorage.userId}
+      axiosPost("/addTask", data, localStorage.token);
       dispatch(addTask(task));
     }
   };
