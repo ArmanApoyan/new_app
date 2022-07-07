@@ -7,7 +7,7 @@ import { reorder } from "../../utils";
 import { useCallback, useEffect } from "react";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
-import { getTasks } from "../../store/Task/action";
+import { action1, getTasks, reorderTasks } from "../../store/Task/action";
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -30,7 +30,8 @@ const Home: React.FC = () => {
       res.source.droppableId,
       res.destination.droppableId
     );
-    dispatch({ data, type: UPDATE });
+     // @ts-ignore
+    dispatch(reorderTasks("create", data));
   }
 
   const handleSearch = useCallback((search: string) => {

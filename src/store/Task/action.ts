@@ -15,7 +15,6 @@ export function getTasks() {
   return async (dispatch: Dispatch<AnyAction>) => {
     const { result } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
     result.map((el: any) => delete el.__v);
-    console.log(result);
     dispatch(setTasks(result));
   };
 }
@@ -38,5 +37,21 @@ export const action1 = (type: string, task: any) => {
       axiosPost("/addTask", data, localStorage.token);
       dispatch(addTask(task));
     }
+  };
+};
+
+const reorder = (data:[Goal]) => {
+  return ({
+    type: UPDATE,
+    data
+  })
+}
+
+export const reorderTasks = (type: string, data: any) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    let tasks:any = [...data]
+    tasks.forEach((el:any)=>el.userId = localStorage.userId)
+      axiosPost("/reorderTasks", tasks, localStorage.token, localStorage.userId);
+      dispatch(reorder(tasks));
   };
 };

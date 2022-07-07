@@ -25,7 +25,7 @@ export const myReducer = (state: state = myState, action: action) => {
       console.log(state.goals);
       break;
     case UPDATE:
-      state.goals = action.data;
+      state.goals = [...action.data];
       break;
     case DELETE:
       axiosPost("/deleteTask",{id:action.id},localStorage.token)
