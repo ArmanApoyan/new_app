@@ -1,4 +1,4 @@
-import { ADD_TASK, CHANGE, DELETE, GET_TASKS, SEARCH, UPDATE } from "./types";
+import { ADD_TASK, CHANGE, CLEAR, DELETE, GET_TASKS, SEARCH, UPDATE } from "./types";
 import { Column, Goal } from "../../types/global";
 import { myState } from "./state";
 import { axiosGet, axiosPost } from "../../config/axios";
@@ -6,13 +6,13 @@ import { axiosGet, axiosPost } from "../../config/axios";
 interface state {
   columns: Array<Column>;
   goals: Array<Goal>;
-  search?:string,
+  search?: string;
 }
 interface action {
   type: string;
   data?: any;
   id?: any;
-  search?:string,
+  search?: string;
 }
 
 export const myReducer = (state: state = myState, action: action) => {
@@ -20,24 +20,29 @@ export const myReducer = (state: state = myState, action: action) => {
     case ADD_TASK:
       state.goals = [...state.goals, action.data];
       break;
-      case GET_TASKS:
-      state.goals = [...action.data]
+    case CLEAR:
+      state.goals = [];
+      break;
+    case GET_TASKS:
+      state.goals = [...action.data];
       console.log(state.goals);
       break;
     case UPDATE:
       state.goals = [...action.data];
       break;
     case DELETE:
-      axiosPost("/deleteTask",{id:action.id},localStorage.token)
+      axiosPost("/deleteTask", { id: action.id }, localStorage.token);
       state.goals = state.goals.filter((el) => el.id != action.id);
       break;
     case CHANGE:
-    let index = 0
-    state.goals.forEach((el,i)=>el.id==action.data.id?index=i:false)
-    state.goals.splice(index,1,action.data)
+      let index = 0;
+      state.goals.forEach((el, i) =>
+        el.id == action.data.id ? (index = i) : false
+      );
+      state.goals.splice(index, 1, action.data);
       break;
     case SEARCH:
-      state.search = action.search
+      state.search = action.search;
       break;
     default:
       break;

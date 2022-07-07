@@ -6,10 +6,13 @@ import Button from "../Button";
 import Modal from "../Modal";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { CLEAR } from "../../store/Task/types";
 
 const Head: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
+  const dispatch = useDispatch() 
 
   return (
     <nav>
@@ -32,6 +35,7 @@ const Head: React.FC = () => {
               localStorage.removeItem("token")
               localStorage.removeItem("userId")
               navigate("/log")
+              dispatch({type:CLEAR})
             }}
           >
             LOG OUT
