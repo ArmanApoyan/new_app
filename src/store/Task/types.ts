@@ -3,3 +3,4 @@ export const UPDATE = "update data";
 export const DELETE = "delete task";
 export const CHANGE = "change task";
 export const SEARCH = "search task";
+export const GET_TASKS = "get tasks";

@@ -1,58 +1,41 @@
-import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH } from "./types";
+import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH, GET_TASKS } from "./types";
 import { Goal } from "../../types/global";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { axiosPost } from "../../config/axios";
+import { axiosGet, axiosPost } from "../../config/axios";
 
-function addTask(data: Goal) {
+function setTasks(result: [Goal]) {
   return {
-    type: ADD_TASK,
-    data,
+    type: GET_TASKS,
+    data: result,
   };
 }
 
-export function update(data: Goal[]) {
-  return {
-    type: UPDATE,
-    data,
+export function getTasks() {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const { result } = await axiosGet("/getTasks", localStorage.token);
+    result.map((el: any) => delete el.__v);
+    console.log(result);
+    dispatch(setTasks(result));
   };
 }
 
-export function deleteTask(id: number) {
-  return {
-    type: DELETE,
-    id,
-  };
-}
-
-export function changeTask(data: Goal) {
-  return {
-    type: CHANGE,
-    data,
-  };
-}
-
-const addAction = (data: any) => {
+export const addTask = (data: any) => {
   return { type: ADD_TASK, data };
 };
 
-const changeAction = (data: any) => {
+const updateTask = (data: any) => {
   return { type: CHANGE, data };
 };
 
 export const action1 = (type: string, task: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     if (type == "create") {
-      dispatch(changeAction(task));
+      axiosPost("/updateTask", task, localStorage.token);
+      dispatch(updateTask(task));
     } else {
-      dispatch(addAction(task));
+      axiosPost("/addTask", task, localStorage.token);
+      dispatch(addTask(task));
     }
   };
 };
-
-export function searchTask(search: string) {
-  return {
-    type: SEARCH,
-    search,
-  };
-}

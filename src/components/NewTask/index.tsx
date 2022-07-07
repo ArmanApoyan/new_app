@@ -2,7 +2,7 @@ import { getIds, handleBlur, handleChange, handleDblClick, random, validator } f
 import React, { useEffect, useState, useMemo, memo } from "react";
 import { Column, Goal, State } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
-import { action1 } from "../../store/Task/action";
+import { action1, addTask } from "../../store/Task/action";
 import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
 

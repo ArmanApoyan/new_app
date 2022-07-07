@@ -1,7 +1,7 @@
-import { ADD_TASK, CHANGE, DELETE, SEARCH, UPDATE } from "./types";
+import { ADD_TASK, CHANGE, DELETE, GET_TASKS, SEARCH, UPDATE } from "./types";
 import { Column, Goal } from "../../types/global";
 import { myState } from "./state";
-import { axiosPost } from "../../config/axios";
+import { axiosGet, axiosPost } from "../../config/axios";
 
 interface state {
   columns: Array<Column>;
@@ -20,10 +20,15 @@ export const myReducer = (state: state = myState, action: action) => {
     case ADD_TASK:
       state.goals = [...state.goals, action.data];
       break;
+      case GET_TASKS:
+      state.goals = [...action.data]
+      console.log(state.goals);
+      break;
     case UPDATE:
       state.goals = action.data;
       break;
     case DELETE:
+      axiosPost("/deleteTask",{id:action.id},localStorage.token)
       state.goals = state.goals.filter((el) => el.id != action.id);
       break;
     case CHANGE:

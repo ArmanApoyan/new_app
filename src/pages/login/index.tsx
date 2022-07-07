@@ -25,8 +25,8 @@ const Log: React.FC = () => {
           <form
             className="reg_form"
             onSubmit={handleSubmit((data) => {
-              console.log(data);
               userReg(data);
+              setType("log")
               reset();
             })}
           >
@@ -99,7 +99,7 @@ const Log: React.FC = () => {
               dispatch(userLog(data));
               setTimeout(()=>{
                 navigate("/")
-              },600)
+              },300)
               reset();
             })}
           >

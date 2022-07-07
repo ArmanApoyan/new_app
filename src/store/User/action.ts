@@ -8,6 +8,9 @@ export async function userReg(data: object) {
   if (result.error) {
     alert(result.error);
   }
+  if (result.message) {
+    alert(result.message);
+  }
 }
 
 function logUser(result: any) {
