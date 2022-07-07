@@ -26,6 +26,7 @@ export function userLog(data: object) {
       alert(result.error);
     }
     if (result.data) {
+        localStorage.token = result.token
         dispatch(logUser(result.data));
     }
   };

@@ -11,8 +11,6 @@ const Log: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [type, setType] = useState("log");
-  // const {user} = useSelector((state:userStateType)=>state.user)
-  
   const {
     register,
     handleSubmit,
@@ -99,7 +97,9 @@ const Log: React.FC = () => {
               console.log(data);
               // @ts-ignore
               dispatch(userLog(data));
-              navigate("/")
+              setTimeout(()=>{
+                navigate("/")
+              },600)
               reset();
             })}
           >

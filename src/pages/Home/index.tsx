@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { Column, Goal, State, userStateType } from "../../types/global";
+import { Column, Goal, State } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
 import { UPDATE } from "../../store/Task/types";
 import Element from "../../components/Element";
@@ -9,9 +9,13 @@ import "./style.scss";
 import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!localStorage.token){
+      navigate("/log")
+    }
+  },[])
   const dispatch = useDispatch();
-  // const {user} = useSelector((state:userStateType)=>state.user)
   const { goals, search, columns } = useSelector((state: State) => state.task);
 
   function dragEnd(res: any) {

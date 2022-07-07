@@ -29,10 +29,11 @@ const Head: React.FC = () => {
           <Button
             className="login"
             onClick={() => {
+              localStorage.removeItem("token")
               navigate("/log")
             }}
           >
-            LOG IN
+            LOG OUT
           </Button>
         </div>
       </div>
