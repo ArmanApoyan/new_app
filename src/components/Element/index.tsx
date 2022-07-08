@@ -4,12 +4,13 @@ import { Draggable } from "react-beautiful-dnd";
 import { DELETE } from "../../store/Task/types";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Goal } from "../../types/global";
+import { Goal, userStateType } from "../../types/global";
 import { lengthCheck } from "../../utils";
 import { MdDelete } from "react-icons/md";
 import NewTask from "../NewTask";
 import Modal from "../Modal";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 interface PropTypes {
   task: Goal;
@@ -17,6 +18,7 @@ interface PropTypes {
 }
 
 const Element: React.FC<PropTypes> = (props) => {
+  const { user } = useSelector((state: userStateType) => state.user);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { task, index } = props;
@@ -44,8 +46,8 @@ const Element: React.FC<PropTypes> = (props) => {
       <Draggable draggableId={task.id.toString()} index={index}>
         {(provided, snapshot) => (
           <div
-          data-testid="task"
-            className={snapshot.isDragging?"goal goalDrag":"goal"}
+            data-testid="task"
+            className={snapshot.isDragging ? "goal goalDrag" : "goal"}
             onDoubleClick={(e) => {
               setIsOpen(true);
               setType("view");
@@ -57,38 +59,35 @@ const Element: React.FC<PropTypes> = (props) => {
           >
             <h1 data-testid="title">{title}</h1>
             <h3>{des}</h3>
-            <button
-            type="button"
-            data-testid="close"
-              className="x"
-              onClick={() => {
-                dispatch({ id: task.id, type: DELETE });
-              }}
-            >
-              <MdDelete />
-            </button>
-            <button
-            data-testid="edit_btn"
-              onClick={() => {
-                setIsOpen(true);
-                setType("create");
-              }}
-              className="edit"
-            >
-              <BsFillPencilFill />
-            </button>
+            {user.role === "manager" && (
+              <button
+                type="button"
+                data-testid="close"
+                className="x"
+                onClick={() => {
+                  dispatch({ id: task.id, type: DELETE });
+                }}
+              >
+                <MdDelete />
+              </button>
+            )}
+            {user.role === "manager" && (
+              <button
+                data-testid="edit_btn"
+                onClick={() => {
+                  setIsOpen(true);
+                  setType("create");
+                }}
+                className="edit"
+              >
+                <BsFillPencilFill />
+              </button>
+            )}
           </div>
         )}
       </Draggable>
-      <Modal
-        isOpen={isOpen}
-        close={() => close()}
-      >
-        <NewTask
-          type={type}
-          task={task}
-          close={() => close()}
-        />
+      <Modal isOpen={isOpen} close={() => close()}>
+        <NewTask type={type} task={task} close={() => close()} />
       </Modal>
     </>
   );

@@ -1,20 +1,25 @@
+import { GET_USER } from "../Task/types";
 import { userState } from "./state";
 import { USER_LOG } from "./types";
 
-
 interface userStateType {
-  user:object
+  user: object;
 }
 interface action {
   type: string;
-  data?:any
+  data?: any;
 }
 
-export const userReducer = (state: userStateType = userState, action: action) => {
+export const userReducer = (
+  state: userStateType = userState,
+  action: action
+) => {
   switch (action.type) {
     case USER_LOG:
-      state.user = action.data
-      console.log(state.user);
+      state.user = action.data;
+      break;
+    case GET_USER:
+      state.user = action.data;
       break;
     default:
       break;

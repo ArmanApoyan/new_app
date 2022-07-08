@@ -8,11 +8,17 @@ import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CLEAR } from "../../store/Task/types";
+import { useSelector } from "react-redux";
+import { userStateType } from "../../types/global";
+import InviteForm from "../InviteForm";
+import { becomeManager } from "../../store/User/action";
 
 const Head: React.FC = () => {
+  const { user } = useSelector((state: userStateType) => state.user);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate()
-  const dispatch = useDispatch() 
+  const [isOpen2, setIsOpen2] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <nav>
@@ -21,25 +27,49 @@ const Head: React.FC = () => {
           <Search />
         </div>
         <div className="buttons">
-          <Button
-            className="add"
-            onClick={() => {
-              setIsOpen(true);
-            }}
-          >
-            <AiFillFileAdd />
-          </Button>
+          {user.role === "manager" && (
+            <Button
+              className="add"
+              onClick={() => {
+                setIsOpen(true);
+              }}
+            >
+              <AiFillFileAdd />
+            </Button>
+          )}
           <Button
             className="login"
             onClick={() => {
-              localStorage.removeItem("token")
-              localStorage.removeItem("userId")
-              navigate("/log")
-              dispatch({type:CLEAR})
+              localStorage.removeItem("token");
+              localStorage.removeItem("userId");
+              localStorage.removeItem("refresh");
+              navigate("/log");
+              dispatch({ type: CLEAR });
             }}
           >
             LOG OUT
           </Button>
+          {user.role === "manager" && (
+            <Button
+              className="invite_btn"
+              onClick={() => {
+                setIsOpen2(true);
+              }}
+            >
+              INVITE
+            </Button>
+          )}
+          {user.role === "user" && (
+            <Button
+              className="invite_btn"
+              onClick={() => {
+                becomeManager(user.id)
+                window.location.reload()
+              }}
+            >
+              Become Manager
+            </Button>
+          )}
         </div>
       </div>
       <Modal
@@ -54,6 +84,19 @@ const Head: React.FC = () => {
             setIsOpen(false);
           }}
         />
+      </Modal>
+      
+      <Modal
+        isOpen={isOpen2}
+        close={() => {
+          setIsOpen2(false);
+        }}
+      >
+          <InviteForm
+            close={() => {
+              setIsOpen2(false);
+            }}
+          />
       </Modal>
     </nav>
   );

@@ -5,3 +5,4 @@ export const CHANGE = "change task";
 export const SEARCH = "search task";
 export const GET_TASKS = "get tasks";
 export const CLEAR = "clear";
+export const GET_USER = "get user";

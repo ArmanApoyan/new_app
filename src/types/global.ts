@@ -16,6 +16,13 @@ export interface State {
 
 export interface userStateType {
   user:{
-    user:{username:string}
+    user:{
+      id:string;
+      username:string;
+      email:string;
+      password:string;
+      role:string;
+      initedUser?:string;
+    }
   }
 }

@@ -25,3 +25,17 @@
     cursor: pointer;
   }
 }
+
+.invite_btn {
+  background-color: #7ab641;
+  height: 25px;
+  border: none;
+  color: black;
+  font-size: 16px;
+  border-radius: 8px;
+  &:hover {
+    color: white;
+    background-color: rgb(61, 61, 61);
+    cursor: pointer;
+  }
+}

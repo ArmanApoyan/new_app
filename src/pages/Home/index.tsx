@@ -1,13 +1,13 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { Column, Goal, State } from "../../types/global";
+import { Column, Goal, State, userStateType } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
 import Element from "../../components/Element";
 import { reorder } from "../../utils";
 import { useCallback, useEffect } from "react";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
-import { action1, getTasks, reorderTasks } from "../../store/Task/action";
-import { refreshToken } from "../../store/User/action";
+import { getTasks, reorderTasks } from "../../store/Task/action";
+
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -15,12 +15,10 @@ const Home: React.FC = () => {
     if(!localStorage.token){
       navigate("/log")
     }
-    
     // @ts-ignore
     dispatch(getTasks())
-
   },[])
-  
+  const { user } = useSelector((state: userStateType) => state.user);
   const dispatch = useDispatch();
   const { goals, search, columns } = useSelector((state: State) => state.task);
 

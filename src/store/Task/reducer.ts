@@ -25,7 +25,6 @@ export const myReducer = (state: state = myState, action: action) => {
       break;
     case GET_TASKS:
       state.goals = [...action.data];
-      console.log(state.goals);
       break;
     case UPDATE:
       state.goals = [...action.data];

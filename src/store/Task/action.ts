@@ -1,4 +1,4 @@
-import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH, GET_TASKS } from "./types";
+import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH, GET_TASKS, GET_USER } from "./types";
 import { Goal } from "../../types/global";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
@@ -11,11 +11,19 @@ function setTasks(result: [Goal]) {
   };
 }
 
+function setUser(user: any) {
+  return {
+    type: GET_USER,
+    data: user,
+  };
+}
+
 export function getTasks() {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const { result } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
+    const { result, user } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
     result.map((el: any) => delete el.__v);
     dispatch(setTasks(result));
+    dispatch(setUser(user));
   };
 }
 

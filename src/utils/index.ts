@@ -50,7 +50,10 @@ export function lengthCheck (string:string, count:number=0) {
   }
 }
 
-export const handleDblClick = (type:string,compType:CallableFunction,changeType:CallableFunction) => {
+export const handleDblClick = (type:string,compType:CallableFunction,changeType:CallableFunction,role:string) => {
+  if(role!=="manager"){
+    return
+  }
   compType("create");
   changeType(type);
 }

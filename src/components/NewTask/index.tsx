@@ -1,8 +1,8 @@
 import { getIds, handleBlur, handleChange, handleDblClick, random, validator } from "../../utils";
 import React, { useEffect, useState, useMemo, memo } from "react";
-import { Column, Goal, State } from "../../types/global";
+import { Column, Goal, State, userStateType } from "../../types/global";
 import { useDispatch, useSelector } from "react-redux";
-import { action1, addTask } from "../../store/Task/action";
+import { action1 } from "../../store/Task/action";
 import { BiArrowBack } from "react-icons/bi";
 import "./style.scss";
 
@@ -19,6 +19,7 @@ const NewTask: React.FC<Props> = (props) => {
   const [compType, setcompType] = useState(type);
 
   const { columns, goals } = useSelector((state: State) => state.task);
+  const { user } = useSelector((state: userStateType) => state.user);
   const newIds = useMemo(getIds(goals), [goals]);
   const [formData, setFormData] = useState({
     id: random(newIds),
@@ -72,7 +73,7 @@ const NewTask: React.FC<Props> = (props) => {
     close();
   };
   return (
-    <>{compType !== "view" && (
+    <>{compType !== "view" && user.role==="manager" && (
         <form
           className="newTask"
           onSubmit={(e) => handleSubmit(e)}>
@@ -219,19 +220,19 @@ const NewTask: React.FC<Props> = (props) => {
           <p
           data-testid="p"
             className="status"
-            onDoubleClick={() =>handleDblClick("select",setcompType,setChangeType)}>
+            onDoubleClick={() =>handleDblClick("select",setcompType,setChangeType,user.role)}>
             {formData.status.value}
           </p>
           <p
           data-testid="p"
             className="title"
-            onDoubleClick={() =>handleDblClick("input",setcompType,setChangeType)}>
+            onDoubleClick={() =>handleDblClick("input",setcompType,setChangeType,user.role)}>
             {formData.title.value}
           </p>
           <p
           data-testid="p"
             className="des"
-            onDoubleClick={() =>handleDblClick("textarea",setcompType,setChangeType)}>
+            onDoubleClick={() =>handleDblClick("textarea",setcompType,setChangeType,user.role)}>
             {formData.description.value}
           </p>
         </div>)}
