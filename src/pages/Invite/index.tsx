@@ -4,8 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { checkToken, newUserReg } from "../../store/User/action";
 
 const Invite: React.FC = () => {
-  console.error('asd');
-  
+  console.log('test');
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
   const navigate = useNavigate();
