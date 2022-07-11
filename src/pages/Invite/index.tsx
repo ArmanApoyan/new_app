@@ -16,8 +16,6 @@ const Invite: React.FC = () => {
     });
   }, []);
 
-
-  
   const {
     register,
     handleSubmit,
