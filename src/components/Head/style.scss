@@ -48,7 +48,6 @@ ul {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 5px;
   color: white;
-
 }
 .closeList {
   visibility: hidden;
@@ -61,13 +60,49 @@ ul {
 .buttons_list {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 20px;
   list-style: none;
 }
+.buttons_open {
+  position: absolute;
+  top: 16px;
+  display: none;
+  transform: scale(2);
+}
+.isOpen {
+  display: block;
+}
+.isClose {
+}
 
 @media (max-width: 750px) {
+  .search {
+    margin-left: 10px;
+  }
   .menu {
+    top: 0px;
+    margin-left: 15px;
     width: 150px;
+
+  }
+  .buttons_list {
+    width: 120px;
+    height: 150px;
+    position: absolute;
+    padding-right: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    gap: 30px;
+    top: 5%;
+    right: 5%;
+    li {
+      text-align: center;
+      margin: 15px;
+    }
+  }
+  .isClose {
+    display: none;
+  }
+  .buttons_open {
+    display: block;
   }
 }

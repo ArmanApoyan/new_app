@@ -1,5 +1,5 @@
 import { AiFillFileAdd } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import NewTask from "../NewTask";
 import Search from "../Search";
 import Button from "../Button";
@@ -19,12 +19,15 @@ const Head: React.FC = () => {
   const { users } = useSelector((state: userStateType) => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [buttonsMenu, setButtonsMenu] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menuBody = useRef(null);
+  const buttonsBody = useRef(null);
 
   useOutsideClick(menuBody,()=>{setMenu(false)})
+  useOutsideClick(buttonsBody,()=>{setButtonsMenu(false)})
 
   return (
     <>
@@ -66,8 +69,15 @@ const Head: React.FC = () => {
           <div className="search">
             <Search />
           </div>
-          <div className="buttons">
-            <ul className="buttons_list">
+          <div ref={buttonsBody}  className="buttons">
+            <p onClick={() => {
+              if (buttonsMenu) {
+                setButtonsMenu(false);
+              } else {
+                setButtonsMenu(true);
+              }
+            }}><RiMenuLine className="buttons_open"/></p>            
+              <ul className={buttonsMenu?"buttons_list isOpen":"buttons_list isClose"}>
               {user.role === "manager" && (
                 <li className="menu_button">
                   <Button
@@ -106,7 +116,7 @@ const Head: React.FC = () => {
                   </Button>
                 </li>
               )}
-            </ul>
+            </ul>            
           </div>
         </div>
         <Modal

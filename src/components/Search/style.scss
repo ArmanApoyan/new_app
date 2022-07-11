@@ -65,3 +65,9 @@
     width: 80px;
   }
 }
+
+@media (max-width: 750px) {
+  .searchIcon {
+    left:68%;
+  }
+}
