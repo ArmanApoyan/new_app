@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { axiosPost } from "../../config/axios";
-import { USER_LOG } from "./types";
+import { SET_USERS, USER_LOG } from "./types";
 
 export async function userReg(data: object) {
   const result = await axiosPost("regUser", data);
@@ -23,8 +23,6 @@ function logUser(result: any) {
 export function userLog(data: object) {
   return async (dispatch: Dispatch<AnyAction>) => {
     const result = await axiosPost("logUser", data);
-    console.log(result.data);
-
     if (result.data) {
       localStorage.token = result.token;
       localStorage.refresh = result.refresh;
@@ -58,7 +56,25 @@ export async function inviteUser(data: any) {
   return result;
 }
 
-export async function becomeManager(data: any) {
-  const result = await axiosPost("/becomeManager", data, localStorage.token ).then(res=>res)
+
+async function setUsers (users:any) {
+  return {
+    type: SET_USERS,
+    data: users,
+  };
+}
+
+export function getUsers(data: any) {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const result = await axiosPost("/getUsers", data, localStorage.token )  
+    dispatch({
+      type: SET_USERS,
+      data: result.users,
+    })   
+  };
+}
+
+export async function notification(data: any) {
+  const result = await axiosPost("/notification", data, localStorage.token ).then(res=>res)
   return result;
 }

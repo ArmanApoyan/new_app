@@ -31,6 +31,17 @@ const Log: React.FC = () => {
             })}
           >
             <div className="reg_div">
+              <label>Organization</label>
+              <input
+                className="reg_input"
+                type="text"
+                {...register("organization", { required: true })}
+              />
+              {errors.organization && (
+                <p className="error">Organization name is required</p>
+              )}
+            </div>
+            <div className="reg_div">
               <label>Username</label>
               <input
                 className="reg_input"
@@ -94,7 +105,6 @@ const Log: React.FC = () => {
                 delete data.confirm;
                 delete data.email;
               }
-              console.log(data);
               // @ts-ignore
               dispatch(userLog(data));
               setTimeout(()=>{

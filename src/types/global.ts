@@ -3,6 +3,8 @@ export interface Goal {
   title: string;
   description: string;
   status: string;
+  organization: string;
+  userId: string;
 }
 export type Column = { title: string };
 
@@ -17,6 +19,7 @@ export interface State {
 export interface userStateType {
   user:{
     user:{
+      organization:string;
       id:string;
       username:string;
       email:string;
@@ -24,5 +27,6 @@ export interface userStateType {
       role:string;
       initedUser?:string;
     }
+    users:[]
   }
 }

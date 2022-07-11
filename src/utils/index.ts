@@ -17,15 +17,14 @@ export const reorder = (
   startCol: string,
   endCol: string,
 ): Goal[] => {
-  const result = Array.from(tasks);
-  const [replaced] = result.splice(start, 1);
+  const [replaced] = tasks.splice(start, 1);
   if(start == 0){
-    result.splice(end-1>=0?end-1:end, 0, {...replaced, status: endCol});
+    tasks.splice(end-1>=0?end-1:end, 0, {...replaced, status: endCol});
   }
   else {
-    result.splice(end, 0, {...replaced, status: endCol});
+    tasks.splice(end, 0, {...replaced, status: endCol});
   }
-  return result;
+  return tasks;
 };
 
 export function validator (regex:RegExp, data:string) {

@@ -23,6 +23,7 @@ export const myReducer = (state: state = myState, action: action) => {
     case CLEAR:
       state.goals = [];
       break;
+      
     case GET_TASKS:
       state.goals = [...action.data];
       break;

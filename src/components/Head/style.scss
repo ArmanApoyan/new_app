@@ -1,5 +1,9 @@
 nav {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: visible;
+  align-items: center;
   background-color: rgba(108, 162, 172, 0.493);
   .head {
     width: 70%;
@@ -17,5 +21,53 @@ nav {
     gap: 20px;
     justify-content: center;
     align-items: center;
+  }
+}
+.menu {
+  position: absolute;
+  top: 1%;
+  left: 2%;
+  width: 12%;
+  word-wrap: break-word;
+}
+.menu_icon {
+  transform: scale(2);
+  &:hover {
+    cursor: pointer;
+  }
+}
+.name {
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+ul {
+  list-style: none;
+}
+.openList {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  color: white;
+
+}
+.closeList {
+  visibility: hidden;
+}
+.users {
+  margin: 5px;
+  padding-left: 5px;
+}
+
+.buttons_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+}
+
+@media (max-width: 750px) {
+  .menu {
+    width: 150px;
   }
 }
