@@ -7,7 +7,7 @@ const Invite: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     checkToken(token).then((res) => {
       if (!res.status) {
