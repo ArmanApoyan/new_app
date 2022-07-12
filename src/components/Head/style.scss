@@ -68,6 +68,9 @@ ul {
   top: 16px;
   display: none;
   transform: scale(2);
+  &:hover {
+    cursor: pointer;
+  }
 }
 .isOpen {
   display: block;
