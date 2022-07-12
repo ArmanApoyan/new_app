@@ -15,8 +15,7 @@ import { RiMenuLine } from "react-icons/ri";
 import useOutsideClick from "../../hooks/outSideClick";
 
 const Head: React.FC = () => {
-  const { user } = useSelector((state: userStateType) => state.user);
-  const { users } = useSelector((state: userStateType) => state.user);
+  const { user,users } = useSelector((state: userStateType) => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const [buttonsMenu, setButtonsMenu] = useState(false);
@@ -132,7 +131,6 @@ const Head: React.FC = () => {
             }}
           />
         </Modal>
-
         <Modal
           isOpen={isOpen2}
           close={() => {
