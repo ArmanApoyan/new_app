@@ -7,3 +7,4 @@ src/components/Element/__snapshots__
 src/components/NewTask/__snapshots__
 src/pages/Home/__snapshots__
 src/__snapshots__
+.env

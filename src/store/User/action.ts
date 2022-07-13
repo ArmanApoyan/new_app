@@ -78,3 +78,13 @@ export async function notification(data: any) {
   const result = await axiosPost("/notification", data, localStorage.token ).then(res=>res)
   return result;
 }
+
+export async function recover(data: any) {
+  const result = await axiosPost("/recover", data, localStorage.token ).then(res=>res)
+  return result;
+}
+
+export async function passRecover(data: any) {
+  const result = await axiosPost("/passRecover", data ).then(res=>res)
+  return result;
+}
