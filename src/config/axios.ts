@@ -19,7 +19,10 @@ export const axiosPost = async (
         refresh: localStorage?.refresh,
       },
     }).then((res) => res.data);
-    if (result.newToken) {
+    if(result.message==="Refresh token is not valid!"){
+      localStorage.removeItem(token)
+    }
+    else if (result.newToken) {
       localStorage.token = result.newToken;
       localStorage.refresh = result.newRefresh;
     }

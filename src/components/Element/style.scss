@@ -1,20 +1,22 @@
 .goal {
   min-height: 150px;
-  background-color: rgb(140, 193, 224);
   padding: 10px;
   text-align: left;
   border-radius: 5px;
   width: 80%;
   position: relative;
   user-select: none;
+  background-color: rgb(94, 173, 219);
+  box-shadow: 5px 5px 12px rgb(65, 132, 187);
+  animation: task 2s ;
   h3 {
     height: 40px;
-    white-space:break-spaces;
-    font-family:sans-serif ;
+    white-space: break-spaces;
+    font-family: sans-serif;
   }
   h1 {
     height: 40px;
-    font-family:sans-serif;
+    font-family: sans-serif;
     padding-top: 15px;
   }
   .x {
@@ -55,15 +57,33 @@
     }
   }
 }
+@keyframes task {
+  0% {
+    background-color: rgb(190, 227, 248);
+  }
+  100% {
+    background-color: rgb(94, 173, 219);
+  }
+}
 .goalDrag {
-  background-color: rgb(66, 139, 182) !important;
+  background-color: rgb(190, 227, 248) !important;
+  box-shadow: 5px 5px 12px rgb(148, 187, 219)!important;
+  animation: drag 3s;
+}
+@keyframes drag {
+  0% {
+    background-color: rgb(94, 173, 219) !important;
+  }
+  100% {
+    background-color: rgb(190, 227, 248) !important;
+  }
 }
 
 .user {
   text-align: right;
 }
 
-@media (max-width:1430px){
+@media (max-width: 1430px) {
   h1 {
     font-size: 25px;
   }
