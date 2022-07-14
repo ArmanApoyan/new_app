@@ -18,11 +18,10 @@ interface PropTypes {
 }
 
 const Element: React.FC<PropTypes> = (props) => {
-  const { user } = useSelector((state: userStateType) => state.user);
+  const { user,users } = useSelector((state: userStateType) => state.user);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { task, index } = props;
-
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
 
@@ -59,6 +58,15 @@ const Element: React.FC<PropTypes> = (props) => {
           >
             <h1 data-testid="title">{title}</h1>
             <h3>{des}</h3>
+            {
+              users.map((el:any,i)=>{
+                if(el.id===task.userId){
+                  return(
+                    <p key={i} className="user">{el.username}</p>
+                  )
+                }
+              })
+            }
             {user.role === "manager" && (
               <button
                 type="button"

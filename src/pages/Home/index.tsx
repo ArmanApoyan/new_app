@@ -7,6 +7,7 @@ import { useCallback, useEffect } from "react";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import { getTasks, reorderTasks } from "../../store/Task/action";
+import { getUsers } from "../../store/User/action";
 
 
 const Home: React.FC = () => {
@@ -18,10 +19,16 @@ const Home: React.FC = () => {
     // @ts-ignore
     dispatch(getTasks())
   },[])
-  const { user } = useSelector((state: userStateType) => state.user);
-  const dispatch = useDispatch();
-  const { goals, search, columns } = useSelector((state: State) => state.task);
 
+  const { goals, search, columns } = useSelector((state: State) => state.task);
+  const { user } = useSelector((state: userStateType) => state.user);
+
+  useEffect(()=>{
+    // @ts-ignore
+    dispatch(getUsers(user.organization))
+  },[user])
+  const dispatch = useDispatch();
+  
   function dragEnd(res: any) {
     let data: Goal[] = reorder(
       goals,
@@ -30,6 +37,7 @@ const Home: React.FC = () => {
       res.source.droppableId,
       res.destination.droppableId
     );
+    data.forEach(el=>{el.organization=user.organization})
      // @ts-ignore
     dispatch(reorderTasks("create", data));
   }

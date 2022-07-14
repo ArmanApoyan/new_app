@@ -1,3 +1,4 @@
 export const userState = {
-  user:{}
+  user:{},
+  users:[]
 };

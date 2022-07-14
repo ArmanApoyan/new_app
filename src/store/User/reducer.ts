@@ -1,9 +1,10 @@
-import { GET_USER } from "../Task/types";
+import { CLEAR, GET_USER } from "../Task/types";
 import { userState } from "./state";
-import { USER_LOG } from "./types";
+import { SET_USERS, USER_LOG } from "./types";
 
 interface userStateType {
   user: object;
+  users:Array<object>,
 }
 interface action {
   type: string;
@@ -18,6 +19,12 @@ export const userReducer = (
     case USER_LOG:
       state.user = action.data;
       break;
+      case CLEAR:
+        state.user = {};
+        break;
+        case SET_USERS:
+        state.users = action.data;
+        break;
     case GET_USER:
       state.user = action.data;
       break;

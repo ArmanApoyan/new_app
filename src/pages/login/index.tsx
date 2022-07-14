@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userLog, userReg } from "../../store/User/action";
-import { userStateType } from "../../types/global";
+import { recover, userLog, userReg } from "../../store/User/action";
+import env from "react-dotenv";
 import "./style.scss";
+import { axiosRecaptcha } from "../../config/axios";
 
 const Log: React.FC = () => {
+  const SITE_KEY = "6LdcD-ogAAAAAD8jzXuJd4EtS4DMiDHVqA3wKnQv"
+  const SECRET_KEY = "6LdcD-ogAAAAAOzeqrs4h6YBLiq3imJI7de1PGDp"
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [type, setType] = useState("log");
+  const [captcha, setCaptcha] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const onChange = async (value:any) =>{
+    const res = await axiosRecaptcha("/recaptcha",`https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${value}`)
+    if(res.response){
+      setCaptcha(true)
+    }
+  }
   return (
     <>
       {type == "reg" && (
@@ -25,11 +35,24 @@ const Log: React.FC = () => {
           <form
             className="reg_form"
             onSubmit={handleSubmit((data) => {
-              userReg(data);
-              setType("log")
-              reset();
+              if(captcha){
+                userReg(data);
+                setType("log");
+                reset();
+              }
             })}
           >
+            <div className="reg_div">
+              <label>Organization</label>
+              <input
+                className="reg_input"
+                type="text"
+                {...register("organization", { required: true })}
+              />
+              {errors.organization && (
+                <p className="error">Organization name is required</p>
+              )}
+            </div>
             <div className="reg_div">
               <label>Username</label>
               <input
@@ -72,6 +95,12 @@ const Log: React.FC = () => {
                 <p className="error">Confirm Password is not correct</p>
               )}
             </div>
+
+            <ReCAPTCHA
+              theme="dark"
+              sitekey={SITE_KEY}
+              onChange={onChange}
+            />
             <button className="reg_btn">Sign Up</button>
           </form>
           <p
@@ -94,12 +123,11 @@ const Log: React.FC = () => {
                 delete data.confirm;
                 delete data.email;
               }
-              console.log(data);
               // @ts-ignore
               dispatch(userLog(data));
-              setTimeout(()=>{
-                navigate("/")
-              },500)
+              setTimeout(() => {
+                navigate("/");
+              }, 500);
               reset();
             })}
           >
@@ -134,6 +162,59 @@ const Log: React.FC = () => {
             }}
           >
             Sign Up
+          </p>
+          <p
+            className="type"
+            onClick={() => {
+              setType("recover");
+            }}
+          >
+            Forgot Password?
+          </p>
+        </div>
+      )}
+      {type == "recover" && (
+        <div className="reg">
+          <h1>Recover Password</h1>
+          <form
+            className="reg_form"
+            onSubmit={handleSubmit((data) => {
+              console.log(data);
+              recover(data);
+              delete data.confirm;
+              delete data.organization;
+              delete data.password;
+              delete data.username;
+              alert("Email for password recavery sent to your email");
+              reset();
+            })}
+          >
+            <div className="reg_div">
+              <label>Email</label>
+              <input
+                className="reg_input"
+                type="email"
+                {...register("email", { required: true, minLength: 3 })}
+              />
+              {errors.emai && <p className="error">Email is not correct</p>}
+            </div>
+            <button className="reg_btn">Continue</button>
+          </form>
+          <p
+            className="type"
+            onClick={() => {
+              setType("reg");
+            }}
+          >
+            Sign Up
+          </p>
+          <p
+            className="type"
+            onClick={() => {
+              setType("log");
+            }}
+          >
+            Log In
           </p>
         </div>
       )}

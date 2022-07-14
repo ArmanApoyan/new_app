@@ -14,12 +14,23 @@
     <title>React App</title>
     <style>
       body {
-        background-color: rgba(144, 214, 247, 0.637);
+        background-image: linear-gradient(rgba(126, 194, 226, 0.603), rgb(12, 85, 119));
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: fixed;
+        animation: bodyAnim 1s;
+      }
+      @keyframes bodyAnim {
+        0% {
+          transform: scale(0.7);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
     </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
 </html>

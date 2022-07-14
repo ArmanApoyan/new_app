@@ -1,6 +1,10 @@
 nav {
   width: 100%;
-  background-color: rgba(108, 162, 172, 0.493);
+  display: flex;
+  flex-direction: row;
+  overflow: visible;
+  align-items: center;
+  background-color: rgba(51, 140, 192, 0.589);
   .head {
     width: 70%;
     padding: 10px 30px;
@@ -17,5 +21,92 @@ nav {
     gap: 20px;
     justify-content: center;
     align-items: center;
+  }
+}
+.menu {
+  position: absolute;
+  top: 1%;
+  left: 2%;
+  width: 12%;
+  word-wrap: break-word;
+}
+.menu_icon {
+  transform: scale(2);
+  &:hover {
+    cursor: pointer;
+  }
+}
+.name {
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+ul {
+  list-style: none;
+}
+.openList {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  color: white;
+}
+.closeList {
+  visibility: hidden;
+}
+.users {
+  margin: 5px;
+  padding-left: 5px;
+}
+
+.buttons_list {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  list-style: none;
+  z-index: 2;
+}
+.buttons_open {
+  position: absolute;
+  top: 16px;
+  display: none;
+  transform: scale(2);
+  &:hover {
+    cursor: pointer;
+  }
+}
+.isOpen {
+  display: block;
+}
+.isClose {
+}
+
+@media (max-width: 750px) {
+  .search {
+    margin-left: 10px;
+  }
+  .menu {
+    top: 0px;
+    margin-left: 15px;
+    width: 150px;
+
+  }
+  .buttons_list {
+    width: 120px;
+    height: 150px;
+    position: absolute;
+    padding-right: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    gap: 30px;
+    top: 5%;
+    right: 5%;
+    li {
+      text-align: center;
+      margin: 15px;
+    }
+  }
+  .isClose {
+    display: none;
+  }
+  .buttons_open {
+    display: block;
   }
 }

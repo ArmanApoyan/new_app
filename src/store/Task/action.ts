@@ -1,4 +1,4 @@
-import { ADD_TASK, CHANGE, DELETE, UPDATE, SEARCH, GET_TASKS, GET_USER } from "./types";
+import { ADD_TASK, CHANGE, UPDATE, GET_TASKS, GET_USER } from "./types";
 import { Goal } from "../../types/global";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
@@ -20,9 +20,9 @@ function setUser(user: any) {
 
 export function getTasks() {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const { result, user } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
-    result.map((el: any) => delete el.__v);
-    dispatch(setTasks(result));
+    const { tasks, user } = await axiosGet("/getTasks", localStorage.token, localStorage.userId);
+    tasks.map((el: any) => delete el.__v);
+    dispatch(setTasks(tasks));
     dispatch(setUser(user));
   };
 }
@@ -41,8 +41,7 @@ export const action1 = (type: string, task: any) => {
       axiosPost("/updateTask", task, localStorage.token);
       dispatch(updateTask(task));
     } else {
-      const data = {...task,userId:localStorage.userId}
-      axiosPost("/addTask", data, localStorage.token);
+      axiosPost("/addTask", task, localStorage.token);
       dispatch(addTask(task));
     }
   };
@@ -58,7 +57,6 @@ const reorder = (data:[Goal]) => {
 export const reorderTasks = (type: string, data: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     let tasks:any = [...data]
-    tasks.forEach((el:any)=>el.userId = localStorage.userId)
       axiosPost("/reorderTasks", tasks, localStorage.token, localStorage.userId);
       dispatch(reorder(tasks));
   };

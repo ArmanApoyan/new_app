@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { checkToken, newUserReg } from "../../store/User/action";
+import { checkToken, passRecover } from "../../store/User/action";
 
-const Invite: React.FC = () => {
+const Recover: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ const Invite: React.FC = () => {
     checkToken(token).then((res) => {
       if (!res.status) {
         navigate("/log");
+        alert("Email is not confirmed")
       }
     });
   }, []);
@@ -25,12 +26,12 @@ const Invite: React.FC = () => {
 
   return (
     <div className="reg">
-      <h1>Sign Up</h1>
+      <h1>Recover Password</h1>
       <form
         className="reg_form"
-        onSubmit={handleSubmit(async (data) => {
+        onSubmit={handleSubmit(async (data) => { 
           try {
-            const res = await newUserReg(data);
+            const res = await passRecover(data)
             if (!res.error) {
               navigate("/log");
             } else {
@@ -41,25 +42,7 @@ const Invite: React.FC = () => {
           }
           reset();
         })}
-      >
-        <div className="reg_div">
-          <label>Username</label>
-          <input
-            className="reg_input"
-            type="text"
-            {...register("username", { required: true, minLength: 3 })}
-          />
-          {errors.username && <p className="error">Username is not correct</p>}
-        </div>
-        <div className="reg_div">
-          <label>Email</label>
-          <input
-            className="reg_input"
-            type="email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && <p className="error">Email is not correct</p>}
-        </div>
+      >               
         <div className="reg_div">
           <label>Password</label>
           <input
@@ -80,10 +63,10 @@ const Invite: React.FC = () => {
             <p className="error">Confirm Password is not correct</p>
           )}
         </div>
-        <button className="reg_btn">Sign Up</button>
+        <button className="reg_btn">Continue</button>
       </form>
     </div>
   );
 };
 
-export default Invite;
+export default Recover;
